@@ -1,5 +1,3 @@
-import 'dart:ui';
-import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 

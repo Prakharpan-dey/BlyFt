@@ -408,27 +408,6 @@ class UserProfileCubit extends Cubit<UserProfileState> {
     }
   }
 
-  bool _shouldRefreshProfile() {
-    try {
-      // Don't refresh if we have valid user data and have loaded from server
-      if (state.user != null && state.hasLoadedFromServer) {
-        Log.d(
-          "USER_PROFILE_CUBIT: Should not refresh - have valid data and loaded from server",
-        );
-        return false;
-      }
-      Log.d("USER_PROFILE_CUBIT: Should refresh profile");
-      return true;
-    } catch (e, stackTrace) {
-      Log.e(
-        "USER_PROFILE_CUBIT: Error in _shouldRefreshProfile",
-        e,
-        stackTrace,
-      );
-      return true;
-    }
-  }
-
   // Add this new method for force refresh
   Future<void> forceRefreshProfile() async {
     try {

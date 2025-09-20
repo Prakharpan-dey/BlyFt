@@ -13,17 +13,17 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-    - name: Add 'GSSoC' label to new issues
+    - name: Add 'gssoc2025', 'hacktoberfest-accepted' label to new issues
       if: github.event_name == 'issues'
       uses: actions-ecosystem/action-add-labels@v1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         labels: |
-          GSSoC
-    - name: Add 'GSSoC' label to new pull requests
+          "gssoc2025", "hacktoberfest-accepted"
+    - name: Add 'gssoc2025', 'hacktoberfest-accepted' label to new pull requests
       if: github.event_name == 'pull_request_target'
       uses: actions-ecosystem/action-add-labels@v1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         labels: |
-          GSSoC
+          "gssoc2025", "hacktoberfest-accepted"

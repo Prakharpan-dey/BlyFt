@@ -27,7 +27,6 @@ class _ProfileScreenState extends State<ProfileScreen>
   File? _selectedImage;
   bool _isNameEditing = false;
   String _originalName = '';
-  String _originalImageUrl = '';
 
   @override
   void initState() {
@@ -294,10 +293,7 @@ class _ProfileScreenState extends State<ProfileScreen>
           if (_emailController.text != state.user!.email) {
             _emailController.text = state.user!.email;
           }
-
-          // Store original values for comparison
           _originalName = state.user!.displayName;
-          _originalImageUrl = state.user!.profileImageUrl ?? '';
         }
       },
       builder: (context, state) {
@@ -637,7 +633,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                       return;
                     }
                   }
-                  onEditTap?.call();
+                  onEditTap.call();
                 },
                 child: Container(
                   padding: const EdgeInsets.all(8),

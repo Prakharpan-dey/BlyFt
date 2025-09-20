@@ -223,13 +223,6 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                             onPressed:
                                 canSubmit
                                     ? () {
-                                      // Optionally capture the reason:
-                                      final reason =
-                                          showCustomField
-                                              ? customReasonController.text
-                                                  .trim()
-                                              : selectedOption;
-                                      // Mark message as reported
                                       _reportedMessages.add(messageIndex);
                                       Navigator.of(context).pop();
                                       // You can also forward `reason` to your backend here if needed.

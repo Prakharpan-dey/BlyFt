@@ -3,7 +3,8 @@ description: "Report a problem or suggest an improvement for the website"
 title: "[WEBSITE] - "
 labels:
   - "Website"
-  - "GSSoC"
+  - "gssoc2025"
+  - "hacktoberfest-accepted"
 assignees: []
 
 body:

@@ -1,7 +1,7 @@
 name: 🔧 Other
 description: For issues that don't fit into other categories
 title: "[OTHER] - "
-labels: ["GSSoC"]
+labels: ["gssoc2025", "hacktoberfest-accepted"]
 assignees: []
 
 body:

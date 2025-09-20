@@ -1,7 +1,7 @@
 name: 🐛 Bug Report
 description: Create a report to help us improve the app
 title: "[BUG] - "
-labels: ["bug", "needs-triage", "GSSoC"]
+labels: ["bug", "needs-triage", "gssoc2025", "hacktoberfest-accepted"]
 assignees: []
 
 body:

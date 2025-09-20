@@ -1,7 +1,7 @@
 name: ⚙️ Backend Feature
 description: Request a new backend feature or API enhancement
 title: "[BACKEND] - "
-labels: ["Backend","GSSoC"]
+labels: ["Backend","gssoc2025", "hacktoberfest-accepted"]
 assignees: []
 
 body:

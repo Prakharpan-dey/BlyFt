@@ -51,6 +51,11 @@
      <td width="300"><img src=".github/assets/GSSOC.png" width="250" height="auto" loading="lazy" alt="GSSoC 24"/></td>
       <td><span style="font-size: 0.9em;">GirlScript Summer of Code is a three-month-long Open Source Program conducted every summer by GirlScript Foundation. It is an initiative to bring more beginners to Open-Source Software Development.</span></td>
     </tr>
+    <tr>
+      <td><a href="https://hacktoberfest.com/">Hacktoberfest 2025</a></td>
+     <td width="300"><img src=".github/assets/hactoberfest.jpeg" width="250" height="auto" loading="lazy" alt="Hacktoberfest 2025"/></td>
+      <td><span style="font-size: 0.9em;">Hacktoberfest is a month-long October event welcoming all skill levels to join the open-source community.</span></td>
+    </tr>
   </table>
 </div>
 

@@ -1,7 +1,7 @@
 name: ⚡ Performance Optimization
 description: Report performance issues or suggest optimizations
 title: "[PERFORMANCE] - "
-labels: ["Optimization", "GSSoC"]
+labels: ["Optimization", "gssoc2025", "hacktoberfest-accepted"]
 assignees: []
 
 body:

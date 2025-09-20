@@ -1,7 +1,7 @@
 name: ✨ New Feature Request
 description: Suggest a new feature for the Flutter app
 title: "[FLUTTER] - "
-labels: ["Flutter", "GSSoC"]
+labels: ["Flutter", "gssoc2025", "hacktoberfest-accepted"]
 assignees: []
 
 body:
