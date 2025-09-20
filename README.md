@@ -59,7 +59,7 @@
   </table>
 </div>
 
-🎉 **Exciting News!** Brevity has been selected for **GirlScript Summer of Code (GSSoC) 2025**!
+🎉 **Exciting News!** Brevity has been selected for **GirlScript Summer of Code (GSSoC) 2025** and **Hacktoberfest 2025**!
 
 📢 **Want to contribute?** Join our community Discord server to connect with maintainers and fellow contributors. We welcome all contributors - from beginners to experienced developers. Let's build something amazing together! 🚀
 
