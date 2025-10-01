@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:brevity/controller/services/backend_service.dart' as backend;
-import 'package:brevity/models/article_model.dart';
-import 'package:brevity/utils/logger.dart';
+import 'package:blyft/controller/services/backend_service.dart' as backend;
+import 'package:blyft/models/article_model.dart';
+import 'package:blyft/utils/logger.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:intl/intl.dart';
 import 'package:gap/gap.dart';
-import 'package:brevity/controller/cubit/theme/theme_cubit.dart';
+import 'package:blyft/controller/cubit/theme/theme_cubit.dart';
 
 class SharedNewsScreen extends StatefulWidget {
   final String newsId;

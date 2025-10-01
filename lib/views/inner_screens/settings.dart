@@ -1,10 +1,10 @@
 import 'dart:ui';
 
-import 'package:brevity/controller/cubit/user_profile/user_profile_cubit.dart';
-import 'package:brevity/controller/cubit/user_profile/user_profile_state.dart';
-import 'package:brevity/controller/services/auth_service.dart';
-import 'package:brevity/views/common_widgets/common_appbar.dart';
-import 'package:brevity/views/inner_screens/profile.dart';
+import 'package:blyft/controller/cubit/user_profile/user_profile_cubit.dart';
+import 'package:blyft/controller/cubit/user_profile/user_profile_state.dart';
+import 'package:blyft/controller/services/auth_service.dart';
+import 'package:blyft/views/common_widgets/common_appbar.dart';
+import 'package:blyft/views/inner_screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

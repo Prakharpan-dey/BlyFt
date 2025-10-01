@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:brevity/utils/logger.dart';
+import 'package:blyft/utils/logger.dart';
 import 'package:equatable/equatable.dart';
-import 'package:brevity/models/article_model.dart';
-import 'package:brevity/models/news_category.dart';
-import 'package:brevity/controller/services/news_services.dart';
+import 'package:blyft/models/article_model.dart';
+import 'package:blyft/models/news_category.dart';
+import 'package:blyft/controller/services/news_services.dart';
 
 part 'news_scroll_event.dart';
 part 'news_scroll_state.dart';

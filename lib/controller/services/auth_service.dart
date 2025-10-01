@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:brevity/models/user_model.dart';
-import 'package:brevity/utils/logger.dart';
-import 'package:brevity/utils/api_config.dart';
+import 'package:blyft/models/user_model.dart';
+import 'package:blyft/utils/logger.dart';
+import 'package:blyft/utils/api_config.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
@@ -17,7 +17,7 @@ class AuthService {
   factory AuthService() => _instance;
   AuthService._internal();
 
-  // final String _baseUrl = 'https://brevity-backend-khaki.vercel.app/api/auth';
+  // final String _baseUrl = 'https://blyft-backend-khaki.vercel.app/api/auth';
   //static const String _baseUrl = 'http://10.0.2.2:5001/api/auth';
   String get _baseUrl => ApiConfig.authUrl;
 

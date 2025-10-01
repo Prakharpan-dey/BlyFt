@@ -1,7 +1,7 @@
-import 'package:brevity/models/article_model.dart';
-import 'package:brevity/utils/api_config.dart';
-import 'package:brevity/controller/services/auth_service.dart';
-import 'package:brevity/utils/logger.dart';
+import 'package:blyft/models/article_model.dart';
+import 'package:blyft/utils/api_config.dart';
+import 'package:blyft/controller/services/auth_service.dart';
+import 'package:blyft/utils/logger.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';

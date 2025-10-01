@@ -1,26 +1,26 @@
-import 'package:brevity/controller/bloc/bookmark_bloc/bookmark_bloc.dart';
-import 'package:brevity/controller/bloc/bookmark_bloc/bookmark_event.dart';
-import 'package:brevity/controller/bloc/bookmark_bloc/bookmark_state.dart';
-import 'package:brevity/controller/bloc/news_scroll_bloc/news_scroll_bloc.dart';
-import 'package:brevity/controller/cubit/theme/theme_cubit.dart';
-import 'package:brevity/models/article_model.dart';
-import 'package:brevity/models/news_category.dart';
-import 'package:brevity/utils/logger.dart';
+import 'package:blyft/controller/bloc/bookmark_bloc/bookmark_bloc.dart';
+import 'package:blyft/controller/bloc/bookmark_bloc/bookmark_event.dart';
+import 'package:blyft/controller/bloc/bookmark_bloc/bookmark_state.dart';
+import 'package:blyft/controller/bloc/news_scroll_bloc/news_scroll_bloc.dart';
+import 'package:blyft/controller/cubit/theme/theme_cubit.dart';
+import 'package:blyft/models/article_model.dart';
+import 'package:blyft/models/news_category.dart';
+import 'package:blyft/utils/logger.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:brevity/controller/services/reaction_service.dart';
+import 'package:blyft/controller/services/reaction_service.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:brevity/controller/services/tutorial_service.dart';
+import 'package:blyft/controller/services/tutorial_service.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:brevity/controller/services/backend_service.dart';
 import '../common_widgets/end_of_news.dart';
 import '../common_widgets/tutorial_overlay_widget.dart';
+import '../../controller/services/backend_service.dart';
 
 class HomeScreen extends StatelessWidget {
   final NewsCategory category;
@@ -442,7 +442,7 @@ class _NewsCardState extends State<_NewsCard> {
         final shareId = response.data['newsId'];
         final shareUrl = 'brevity://share?id=$shareId';
         Log.d('Share URL: $shareUrl');
-        
+
         await Share.share(
           'Check out this article: ${widget.article.title}\n\n$shareUrl',
           subject: widget.article.title,

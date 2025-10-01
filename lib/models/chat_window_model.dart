@@ -1,5 +1,5 @@
-import 'package:brevity/models/conversation_model.dart';
-import 'package:brevity/models/article_model.dart';
+import 'package:blyft/models/conversation_model.dart';
+import 'package:blyft/models/article_model.dart';
 
 class ChatWindow {
   final Article article;

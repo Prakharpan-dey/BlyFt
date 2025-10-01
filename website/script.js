@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
         theme: {
             extend: {
                 colors: {
-                    'brevity-blue': '#4F46E5',
-                    'brevity-dark': '#0F172A',
-                    'brevity-gray': '#1E293B',
+                    'blyft-blue': '#4F46E5',
+                    'blyft-dark': '#0F172A',
+                    'blyft-gray': '#1E293B',
                 },
                 fontFamily: {
                     inter: ['Inter', 'sans-serif'],

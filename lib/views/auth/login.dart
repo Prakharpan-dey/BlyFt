@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 
-import 'package:brevity/controller/services/auth_service.dart';
+import 'package:blyft/controller/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -263,8 +263,8 @@ class _LoginScreenState extends State<LoginScreen>
       children: [
         AnimatedHeader(
           title: 'Welcome Back',
-          subtitle: 'Sign in to your Brevity account',
-          logoAssetPath: 'assets/logos/Brevity_white.png',
+          subtitle: 'Sign in to your BlyFt account',
+          logoAssetPath: 'assets/logos/BlyFt_white.png',
           screenSize: size,
           isLandscape: false,
         ),

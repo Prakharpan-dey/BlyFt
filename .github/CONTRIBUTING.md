@@ -1,6 +1,6 @@
-# 🌟 Contributing to Brevity
+# 🌟 Contributing to BlyFt
 
-Thank you for your interest in contributing to **Brevity**! We welcome all kinds of contributions — whether it's fixing bugs, improving documentation, adding new features, or helping with translations.
+Thank you for your interest in contributing to **BlyFt**! We welcome all kinds of contributions — whether it's fixing bugs, improving documentation, adding new features, or helping with translations.
 
 ## 📚 Table of Contents
 
@@ -34,7 +34,7 @@ Thank you for your interest in contributing to **Brevity**! We welcome all kinds
 ## ⭐ Show Your Support <a id="show-your-support"></a>
 
 If you like the project, **give it a star**! ⭐  
-👉 [Star Brevity on GitHub](https://github.com/Yash159357/BREVITY)
+👉 [Star BlyFt on GitHub](https://github.com/Yash159357/BlyFt)
 
 
 
@@ -64,26 +64,26 @@ Before you begin, ensure you have the following installed on your system:
 
 #### 1. Fork and Clone the Repository
 
-1. **Fork** the repository by clicking the "Fork" button at the top right of [this repo](https://github.com/Yash159357/BREVITY)
+1. **Fork** the repository by clicking the "Fork" button at the top right of [this repo](https://github.com/Yash159357/BlyFt)
 
 2. **Clone** your fork:
 ```bash
-git clone https://github.com/YOUR-USERNAME/brevity.git
-cd brevity
+git clone https://github.com/YOUR-USERNAME/blyft.git
+cd blyft
 ```
 
 3. **Set up upstream** to keep your fork synchronized:
 ```bash
-git remote add upstream https://github.com/Yash159357/BREVITY.git
+git remote add upstream https://github.com/Yash159357/BlyFt.git
 git remote -v
 ```
 
 You should see:
 ```bash
-origin    https://github.com/YOUR-USERNAME/brevity.git (fetch)
-origin    https://github.com/YOUR-USERNAME/brevity.git (push)
-upstream  https://github.com/Yash159357/BREVITY.git (fetch)
-upstream  https://github.com/Yash159357/BREVITY.git (push)
+origin    https://github.com/YOUR-USERNAME/BlyFt.git (fetch)
+origin    https://github.com/YOUR-USERNAME/BlyFt.git (push)
+upstream  https://github.com/Yash159357/BlyFt.git (fetch)
+upstream  https://github.com/Yash159357/BlyFt.git (push)
 ```
 
 #### 2. Configure Environment Variables
@@ -271,7 +271,7 @@ Or visit [http://localhost:5001/api/health](http://localhost:5001/api/health) in
 ## 📍 Project Structure <a id="project-structure"></a>
 
 ```
-brevity/
+BlyFt/
 ├── 📱 lib/                     # Flutter app source code
 │   ├── controller/            # State management & business logic
 │   ├── models/               # Data models
@@ -296,7 +296,7 @@ brevity/
 ## 🔄 Contribution Workflow <a id="contribution-workflow"></a>
 
 ### Step 1: Choose an Issue
-1. Browse [open issues](https://github.com/Yash159357/BREVITY/issues)
+1. Browse [open issues](https://github.com/Yash159357/BlyFt/issues)
 2. Comment on the issue to get it assigned to you
 
 ### Step 2: Create a Branch
@@ -579,7 +579,7 @@ Expected response:
 
 ### Getting Help
 - 💬 **Discord**: Join our [Discord community](https://discord.gg/csnXFwPGUb)
-- 🐛 **Issues**: Create a [GitHub issue](https://github.com/Yash159357/BREVITY/issues/new)
+- 🐛 **Issues**: Create a [GitHub issue](https://github.com/Yash159357/BlyFt/issues/new)
 
 ### Community Guidelines
 - Be respectful and inclusive
@@ -602,4 +602,4 @@ Every contribution matters, whether you're:
 - 🧪 Writing tests
 - 🎨 Designing UI improvements
 
-**Your efforts help make Brevity better for everyone!** 🎉
+**Your efforts help make BlyFt better for everyone!** 🎉

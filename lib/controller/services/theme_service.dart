@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:brevity/utils/logger.dart';
+import 'package:blyft/utils/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/theme_model.dart';
 

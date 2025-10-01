@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:brevity/utils/api_config.dart';
-import 'package:brevity/utils/logger.dart';
+import 'package:blyft/utils/api_config.dart';
+import 'package:blyft/utils/logger.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:image_picker/image_picker.dart';
@@ -34,7 +34,7 @@ class ApiService {
     try {
       Log.d('BACKEND_SERVICE: Initializing tokens from storage');
       final prefs = await SharedPreferences.getInstance();
-      _accessToken = prefs.getString('accessToken'); 
+      _accessToken = prefs.getString('accessToken');
       _refreshToken = prefs.getString('refresh_token');
 
       if (_accessToken != null) {
@@ -64,7 +64,10 @@ class ApiService {
       _refreshToken = refreshToken;
 
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('accessToken', accessToken); // Match AuthService key
+      await prefs.setString(
+        'accessToken',
+        accessToken,
+      ); // Match AuthService key
       await prefs.setString('refresh_token', refreshToken);
       Log.i('BACKEND_SERVICE: Tokens saved successfully');
     } catch (e) {
@@ -471,7 +474,9 @@ class ApiService {
           )
           .timeout(_timeout);
 
-      Log.i('BACKEND_SERVICE: Share request completed with status ${response.statusCode}');
+      Log.i(
+        'BACKEND_SERVICE: Share request completed with status ${response.statusCode}',
+      );
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
@@ -483,7 +488,9 @@ class ApiService {
           statusCode: response.statusCode,
         );
       } else {
-        Log.w('BACKEND_SERVICE: Article share failed with status ${response.statusCode}');
+        Log.w(
+          'BACKEND_SERVICE: Article share failed with status ${response.statusCode}',
+        );
         return ApiResponse(
           success: false,
           message: 'Failed to share article',

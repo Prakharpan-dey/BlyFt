@@ -18,7 +18,7 @@ plugins {
 }
 
 android {
-    namespace = "com.unity.brevity"
+    namespace = "com.unity.blyft"
     compileSdk = flutter.compileSdkVersion
 
     ndkVersion = "27.0.12077973"
@@ -55,7 +55,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.unity.brevity"
+        applicationId = "com.unity.blyft"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

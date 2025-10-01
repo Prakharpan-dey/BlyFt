@@ -1,9 +1,9 @@
-import 'package:brevity/utils/logger.dart';
+import 'package:blyft/utils/logger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:brevity/models/conversation_model.dart';
-import 'package:brevity/models/chat_window_model.dart';
-import 'package:brevity/models/article_model.dart';
-import 'package:brevity/controller/services/gemini_service.dart';
+import 'package:blyft/models/conversation_model.dart';
+import 'package:blyft/models/chat_window_model.dart';
+import 'package:blyft/models/article_model.dart';
+import 'package:blyft/controller/services/gemini_service.dart';
 
 part 'chat_event.dart';
 part 'chat_state.dart';

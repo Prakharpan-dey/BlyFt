@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:math' as math;
 
-import 'package:brevity/controller/services/auth_service.dart';
+import 'package:blyft/controller/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -473,8 +473,8 @@ class _SignupScreenState extends State<SignupScreen>
       children: [
         AnimatedHeader(
           title: 'Create Account',
-          subtitle: 'Join the Brevity community',
-          logoAssetPath: 'assets/logos/Brevity_white.png',
+          subtitle: 'Join the BlyFt community',
+          logoAssetPath: 'assets/logos/BlyFt_white.png',
           screenSize: size,
           isLandscape: false,
         ),

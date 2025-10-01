@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for suggesting UI/UX improvements! Your feedback helps make Brevity better for everyone.
+        Thank you for suggesting UI/UX improvements! Your feedback helps make BlyFt better for everyone.
 
   - type: checkboxes
     id: terms

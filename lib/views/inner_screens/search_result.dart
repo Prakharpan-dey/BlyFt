@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:brevity/controller/bloc/bookmark_bloc/bookmark_bloc.dart';
-import 'package:brevity/controller/bloc/bookmark_bloc/bookmark_event.dart';
-import 'package:brevity/controller/cubit/theme/theme_cubit.dart';
-import 'package:brevity/controller/services/news_services.dart';
-import 'package:brevity/models/article_model.dart';
-import 'package:brevity/views/common_widgets/common_appbar.dart';
-import 'package:brevity/views/common_widgets/List_of_article.dart';
+import 'package:blyft/controller/bloc/bookmark_bloc/bookmark_bloc.dart';
+import 'package:blyft/controller/bloc/bookmark_bloc/bookmark_event.dart';
+import 'package:blyft/controller/cubit/theme/theme_cubit.dart';
+import 'package:blyft/controller/services/news_services.dart';
+import 'package:blyft/models/article_model.dart';
+import 'package:blyft/views/common_widgets/common_appbar.dart';
+import 'package:blyft/views/common_widgets/List_of_article.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:brevity/models/theme_model.dart';
+import 'package:blyft/models/theme_model.dart';
 
 class SearchResultsScreen extends StatefulWidget {
   final String query;

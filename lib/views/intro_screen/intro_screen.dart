@@ -44,7 +44,7 @@ class _IntroductionScreenState extends State<IntroductionScreen>
 
   final List<IntroPage> _pages = [
     IntroPage(
-      title: 'Welcome to\nBrevity',
+      title: 'Welcome to\nBlyFt',
       subtitle: 'Your Smart News Companion',
       description:
           'Skip the long reads, not the knowledge. Get straight to the point with intelligent, 60-word summaries of the world\'s top stories.',

@@ -1,7 +1,7 @@
-import 'package:brevity/views/auth/forgot_password.dart';
+import 'package:blyft/views/auth/forgot_password.dart';
 import 'package:flutter/material.dart';
-import 'package:brevity/views/auth/signup.dart';
-import 'package:brevity/views/auth/login.dart';
+import 'package:blyft/views/auth/signup.dart';
+import 'package:blyft/views/auth/login.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});

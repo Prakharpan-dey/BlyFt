@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:brevity/controller/services/auth_service.dart';
+import 'package:blyft/controller/services/auth_service.dart';
 
 import '../common_widgets/auth_header.dart';
 
@@ -439,8 +439,8 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen>
                 title: 'Verify Your Email',
                 subtitle: widget.isFromLogin
                     ? 'Check your email to continue'
-                    : 'Activate your Brevity account',
-                logoAssetPath: 'assets/logos/Brevity_white.png',
+                    : 'Activate your BlyFt account',
+                logoAssetPath: 'assets/logos/BlyFt_white.png',
                 screenSize: size,
                 isLandscape: false,
               ),

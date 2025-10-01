@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:brevity/utils/logger.dart';
+import 'package:blyft/utils/logger.dart';
 import '../../../models/theme_model.dart';
 
 enum ThemeStatus { initial, loading, loaded, error }

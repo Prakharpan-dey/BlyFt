@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math' as math;
 
-import 'package:brevity/controller/services/auth_service.dart';
+import 'package:blyft/controller/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -432,7 +432,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
         AnimatedHeader(
           title: 'Reset Password',
           subtitle: 'Enter your email to receive reset instructions',
-          logoAssetPath: 'assets/logos/Brevity_white.png',
+          logoAssetPath: 'assets/logos/BlyFt_white.png',
           screenSize: size,
           isLandscape: false,
         ),

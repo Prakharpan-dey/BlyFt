@@ -1,4 +1,4 @@
-import 'package:brevity/utils/logger.dart';
+import 'package:blyft/utils/logger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/theme_model.dart';
 import '../../services/theme_service.dart';
