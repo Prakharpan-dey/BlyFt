@@ -2,14 +2,16 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:blyft/models/user_model.dart';
-import 'package:blyft/utils/logger.dart';
-import 'package:blyft/utils/api_config.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
-import 'package:shared_preferences/shared_preferences.dart'; // Import shared_preferences
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../models/user_model.dart';
+import '../../utils/api_config.dart';
+import '../../utils/logger.dart'; // Import shared_preferences
 
 class AuthService {
   // Singleton instance
@@ -17,7 +19,7 @@ class AuthService {
   factory AuthService() => _instance;
   AuthService._internal();
 
-  // final String _baseUrl = 'https://blyft-backend-khaki.vercel.app/api/auth';
+  // final String _baseUrl = 'https://brevity-backend-khaki.vercel.app/api/auth';
   //static const String _baseUrl = 'http://10.0.2.2:5001/api/auth';
   String get _baseUrl => ApiConfig.authUrl;
 
@@ -695,5 +697,150 @@ class AuthService {
         duration: Duration(seconds: 2),
       ),
     );
+  }
+  Future<void> handleOAuthSuccess({
+    required String accessToken,
+    required String refreshToken,
+    required Map<String, dynamic> userData,
+    required BuildContext context,
+  }) async {
+    try {
+      Log.i('<AUTH_SERVICE> handleOAuthSuccess started');
+
+      // Store the tokens
+      _accessToken = accessToken;
+
+      // Save access token
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('accessToken', accessToken);
+
+      // Create UserModel from OAuth user data
+      _currentUser = UserModel(
+        uid: userData['_id'] ?? userData['id'] ?? '',
+        displayName: userData['displayName'] ?? userData['name'] ?? '',
+        email: userData['email'] ?? '',
+        emailVerified:
+            userData['emailVerified'] ??
+            true, // OAuth users are typically verified
+        createdAt:
+            userData['createdAt'] != null
+                ? DateTime.parse(userData['createdAt'])
+                : null,
+        updatedAt:
+            userData['updatedAt'] != null
+                ? DateTime.parse(userData['updatedAt'])
+                : null,
+        profileImageUrl:
+            userData['profileImage']?['url'] ?? userData['picture'],
+      );
+      _authStateController.add(_currentUser);
+
+      if (context.mounted) {
+        _showSuccessSnackBar(
+          context,
+          'Welcome! Successfully signed in with Google',
+        );
+        context.go('/home/0'); 
+      }
+
+      Log.i('<AUTH_SERVICE> handleOAuthSuccess completed successfully');
+    } catch (e) {
+      Log.e('<AUTH_SERVICE> handleOAuthSuccess error: $e');
+      rethrow;
+    }
+  }
+
+  Future<UserModel?> loginWithOAuth({
+    required String provider,
+    required String accessToken,
+    String? idToken,
+    BuildContext? context,
+    String? userEmail,
+    String? userName,
+  }) async {
+    try {
+      Log.i('<AUTH_SERVICE> loginWithOAuth started for provider=$provider');
+      final uri = Uri.parse('$_baseUrl/oauth');
+      final bodyMap = {
+        'provider': provider,
+        'access_token': accessToken,
+        'id_token': idToken,
+        'email': userEmail,
+        'name': userName,
+      };
+      final body = json.encode(bodyMap);
+
+      Log.d(
+        '<AUTH_SERVICE> OAuth login request -> URL: $uri, headers: {"Content-Type": "application/json"}, body: $body',
+      );
+
+      final response = await http
+          .post(uri, headers: {'Content-Type': 'application/json'}, body: body)
+          .timeout(_httpTimeout);
+
+      Log.d(
+        '<AUTH_SERVICE> OAuth login response -> status: ${response.statusCode}, body: ${response.body}',
+      );
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        _accessToken = data['data']['accessToken'];
+        final userData = data['data']['user'];
+
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('accessToken', _accessToken!);
+
+        _currentUser = UserModel(
+          uid: userData['_id'],
+          displayName: userData['displayName'] ?? '',
+          email: userData['email'] ?? '',
+          emailVerified:
+              userData['emailVerified'] ??
+              true, 
+          createdAt:
+              userData['createdAt'] != null
+                  ? DateTime.parse(userData['createdAt'])
+                  : null,
+          updatedAt:
+              userData['updatedAt'] != null
+                  ? DateTime.parse(userData['updatedAt'])
+                  : null,
+          profileImageUrl: userData['profileImage']?['url'],
+        );
+
+        if (context != null && context.mounted) {
+          _showSuccessSnackBar(context, 'Welcome back!');
+          context.go('/home/0');
+        }
+
+        _authStateController.add(_currentUser);
+        Log.i('<AUTH_SERVICE> loginWithOAuth succeeded for provider=$provider');
+        return _currentUser;
+      } else {
+        final errorData = json.decode(response.body);
+        Log.e(
+          '<AUTH_SERVICE> OAuth login failed -> status: ${response.statusCode}, body: ${response.body}',
+        );
+        throw Exception(errorData['message'] ?? 'OAuth login failed');
+      }
+    } catch (e) {
+      Log.e('<AUTH_SERVICE> OAuth login error: $e');
+      rethrow;
+    }
+  }
+
+  Future<void> signOutFromOAuthProviders() async {
+    try {
+      // Google Sign Out
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      if (await googleSignIn.isSignedIn()) {
+        await googleSignIn.signOut();
+      }
+
+      Log.i('<AUTH_SERVICE> OAuth providers signed out');
+    } catch (e) {
+      Log.w('<AUTH_SERVICE> Error signing out from OAuth providers: $e');
+
+    }
   }
 }
