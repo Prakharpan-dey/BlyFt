@@ -56,6 +56,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   @override
   void initState() {
     super.initState();
+    Log.i("HOME: HomeScreen started");
     final newsBloc = context.read<NewsBloc>();
     final currentState = newsBloc.state;
 
@@ -165,6 +166,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
           onHorizontalDragEnd: (details) {
             final velocity = details.primaryVelocity;
             if (velocity != null && velocity > 300) {
+              Log.i("HOME: Navigating to SidePage via swipe");
               context.goNamed('sidepage');
             }
           },
@@ -178,6 +180,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                         ? articles.length + 1
                         : articles.length + 1,
                 onPageChanged: (index) {
+                  Log.i("HOME: User scrolled to page $index");
                   context.read<NewsBloc>().add(UpdateNewsIndex(index));
 
                   if (!state.hasReachedMax && index >= articles.length - 3) {
@@ -230,7 +233,10 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                           color: Colors.white,
                           size: 22,
                         ),
-                        onPressed: () => context.pushNamed("contactUs"),
+                        onPressed: () {
+                          Log.i('HOME.DART: Navigating to Contact Us page');
+                          context.pushNamed("contactUs");
+                        },
                       ),
                     ],
                   ),
@@ -793,7 +799,10 @@ class _NewsCardState extends State<_NewsCard> {
                         color: Colors.white,
                         size: 28,
                       ),
-                      onPressed: () => _launchUrl(widget.article.url),
+                      onPressed: () {
+                        Log.i('HOME.DART: Opening article URL: ${widget.article.url}');
+                        _launchUrl(widget.article.url);
+                      },
                     ),
                     IconButton(
                       icon: const Icon(
@@ -808,9 +817,12 @@ class _NewsCardState extends State<_NewsCard> {
 
                     IconButton(
                       key: widget.chatbotKey,
-                      onPressed:
-                          () =>
-                              context.pushNamed('chat', extra: widget.article),
+                      onPressed: () {
+                        Log.i(
+                          'HOME: Navigating to Chatbot for article: ${widget.article.title}',
+                        );
+                        context.pushNamed('chat', extra: widget.article);
+                      },
                       icon: Image.asset(
                         'assets/logos/chatbot.gif',
                         width: 40,
@@ -894,6 +906,9 @@ class _TappableHeadlineState extends State<_TappableHeadline> {
 
 Future<void> _launchUrl(String url) async {
   if (!await launchUrl(Uri.parse(url))) {
+    Log.e('HOME.DART: Could not launch URL: $url');
     throw Exception('Could not launch $url');
+  } else {
+    Log.i('HOME.DART: Successfully launched URL: $url');
   }
 }
