@@ -1,14 +1,14 @@
-import 'package:brevity/controller/cubit/theme/theme_cubit.dart';
-import 'package:brevity/controller/cubit/theme/theme_state.dart';
-import 'package:brevity/controller/services/news_services.dart';
-import 'package:brevity/models/article_model.dart';
-import 'package:brevity/models/news_category.dart';
-import 'package:brevity/views/common_widgets/common_appbar.dart';
+import 'package:blyft/controller/cubit/theme/theme_cubit.dart';
+import 'package:blyft/controller/cubit/theme/theme_state.dart';
+import 'package:blyft/controller/services/news_services.dart';
+import 'package:blyft/models/article_model.dart';
+import 'package:blyft/models/news_category.dart';
+import 'package:blyft/views/common_widgets/common_appbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:brevity/l10n/app_localizations.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 
 import '../../controller/cubit/user_profile/user_profile_cubit.dart';
 import '../../controller/cubit/user_profile/user_profile_state.dart';
@@ -601,3 +601,4 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
     );
   }
 }
+

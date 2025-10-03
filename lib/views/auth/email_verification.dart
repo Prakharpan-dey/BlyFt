@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:brevity/controller/services/auth_service.dart';
+import 'package:blyft/controller/services/auth_service.dart';
 import '../../l10n/app_localizations.dart';
 
 import '../common_widgets/auth_header.dart';
@@ -437,11 +437,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen>
               isSmallScreen ? constraints.maxHeight * 0.3 :
               constraints.maxHeight * 0.35,
               child: AnimatedHeader(
-                title: AppLocalizations.of(context)!.verifyYourEmail,
-                subtitle: widget.isFromLogin
-                    ? AppLocalizations.of(context)!.checkYourEmailToContinue
-                    : AppLocalizations.of(context)!.activateYourBrevityAccount,
-                logoAssetPath: 'assets/logos/Brevity_white.png',
+        title: AppLocalizations.of(context)!.verifyYourEmail,
+        subtitle: widget.isFromLogin
+          ? AppLocalizations.of(context)!.checkYourEmailToContinue
+          : AppLocalizations.of(context)!.activateYourBrevityAccount,
+        logoAssetPath: 'assets/logos/Brevity_white.png',
                 screenSize: size,
                 isLandscape: false,
               ),

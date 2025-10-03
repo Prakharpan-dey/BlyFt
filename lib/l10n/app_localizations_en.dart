@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'Brevity';
+  String get appTitle => 'Blyft';
 
   @override
   String get cancel => 'Cancel';
@@ -436,7 +436,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get joinBrevityCommunity => 'Join the Brevity community';
+  String get joinBrevityCommunity => 'Join the Blyft community';
 
   @override
   String get enterYourFullName => 'Enter your full name';
@@ -490,7 +490,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get welcomeBack => 'Welcome Back';
 
   @override
-  String get signInToAccount => 'Sign in to your Brevity account';
+  String get signInToAccount => 'Sign in to your Blyft account';
 
   @override
   String get enterYourPassword => 'Enter your password';
@@ -654,7 +654,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get checkYourEmailToContinue => 'Check your email to continue';
 
   @override
-  String get activateYourBrevityAccount => 'Activate your Brevity account';
+  String get activateYourBrevityAccount => 'Activate your Blyft account';
 
   @override
   String get verificationPending => 'Verification Pending';
@@ -744,4 +744,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get skip => 'SKIP';
+
+  @override
+  String get preferences => 'Preferences';
+
+  @override
+  String get app => 'App';
+
+  @override
+  String get account => 'Account';
+
+  @override
+  String get resultsFor => 'Results for';
 }

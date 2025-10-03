@@ -1,6 +1,6 @@
 {
   "@@locale": "hi",
-  "appTitle": "Brevity",
+  "appTitle": "Blyft",
   "cancel": "रद्द करें",
   "save": "सेव करें",
   "retry": "पुनः प्रयास",
@@ -250,7 +250,7 @@
   "stayUpdatedLatestNews": "नवीनतम समाचारों के साथ अपडेट रहें",
   "features": "फीचर्स",
   "developers": "डेवलपर्स",
-  "shareAppMessage": "इस बेहतरीन समाचार ऐप को देखें: Brevity! इसे डाउनलोड करें: https://play.google.com/store/apps/details?id=com.newsapp.brevity",
+  "shareAppMessage": "इस बेहतरीन समाचार ऐप को देखें: Blyft! इसे डाउनलोड करें: https://play.google.com/store/apps/details?id=com.newsapp.blyft",
   "dailyRemindersEnabled": "दैनिक रिमाइंडर सक्षम किए गए",
   "mode": "मोड",
   "lightMode": "हल्का मोड",
@@ -263,7 +263,7 @@
   "tapAIButtonToChat": "चैट करने के लिए AI बटन पर टैप करें",
   "tapAnywhereToContinue": "जारी रखने के लिए कहीं भी टैप करें",
   "stepStatus": "चरण {current} / {total}",
-  "joinBrevityCommunity": "Brevity समुदाय में शामिल हों",
+  "joinBrevityCommunity": "Blyft समुदाय में शामिल हों",
   "enterYourFullName": "अपना पूरा नाम दर्ज करें",
   "nameIsRequired": "नाम आवश्यक है",
   "enterYourEmail": "अपना ईमेल दर्ज करें",
@@ -304,7 +304,7 @@
   "backToLogin": "लॉगिन पर वापस जाएं",
   "verifyYourEmail": "अपना ईमेल सत्यापित करें",
   "checkYourEmailToContinue": "जारी रखने के लिए अपना ईमेल जांचें",
-  "activateYourBrevityAccount": "अपना Brevity खाता सक्रिय करें",
+  "activateYourBrevityAccount": "अपना Blyft खाता सक्रिय करें",
   "verificationPending": "सत्यापन लंबित",
   "checkVerification": "सत्यापन जांचें",
   "resendEmail": "ईमेल पुनः भेजें",
@@ -315,5 +315,9 @@
   "exploreOtherSections": "अन्य अनुभागों का अन्वेषण करें",
   "youreDoneForTheDay": "आपका आज का काम पूरा हो गया",
   "takeAWellDeservedBreak": "एक अच्छा आराम लें",
-  "failedToOpenArticle": "लेख खोलने में विफल"
+  "failedToOpenArticle": "लेख खोलने में विफल",
+  "preferences": "वरीयताएं",
+  "app": "ऐप",
+  "account": "खाता",
+  "resultsFor": "परिणाम"
 }

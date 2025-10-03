@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "appTitle": "Brevity",
+  "appTitle": "Blyft",
   "@appTitle": {
     "description": "The title of the application"
   },
@@ -530,7 +530,7 @@
   "@createAccount": {
     "description": "Create account title"
   },
-  "joinBrevityCommunity": "Join the Brevity community",
+  "joinBrevityCommunity": "Join the Blyft community",
   "@joinBrevityCommunity": {
     "description": "Create account subtitle"
   },
@@ -626,7 +626,7 @@
   "@welcomeBack": {
     "description": "Login screen title"
   },
-  "signInToAccount": "Sign in to your Brevity account",
+  "signInToAccount": "Sign in to your Blyft account",
   "@signInToAccount": {
     "description": "Login screen subtitle"
   },
@@ -896,7 +896,7 @@
   "@checkYourEmailToContinue": {
     "description": "Email verification subtitle"
   },
-  "activateYourBrevityAccount": "Activate your Brevity account",
+  "activateYourBrevityAccount": "Activate your Blyft account",
   "@activateYourBrevityAccount": {
     "description": "Alternative email verification subtitle"
   },
@@ -1021,5 +1021,21 @@
   "skip": "SKIP",
   "@skip": {
     "description": "Skip button text for tutorial"
+  },
+  "preferences": "Preferences",
+  "@preferences": {
+    "description": "Preferences section header"
+  },
+  "app": "App",
+  "@app": {
+    "description": "App section header"
+  },
+  "account": "Account",
+  "@account": {
+    "description": "Account section header"
+  },
+  "resultsFor": "Results for",
+  "@resultsFor": {
+    "description": "Search results header prefix"
   }
 }

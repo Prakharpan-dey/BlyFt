@@ -1,8 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-import 'package:brevity/models/article_model.dart';
-import 'package:brevity/utils/api_config.dart';
+import 'package:blyft/models/article_model.dart';
+import 'package:blyft/utils/api_config.dart';
 import 'package:logger/logger.dart';
 
 // Custom exception classes for better error handling
@@ -557,3 +557,4 @@ class NewsService {
     }
   }
 }
+

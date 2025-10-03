@@ -1,6 +1,6 @@
 {
   "@@locale": "fr",
-  "appTitle": "Brevity",
+  "appTitle": "Blyft",
   "cancel": "Annuler",
   "save": "Enregistrer",
   "retry": "Réessayer",
@@ -250,7 +250,7 @@
   "stayUpdatedLatestNews": "Restez informé des dernières actualités",
   "features": "Fonctionnalités",
   "developers": "Développeurs",
-  "shareAppMessage": "Découvrez cette fantastique application d'actualités : Brevity ! Téléchargez-la sur : https://play.google.com/store/apps/details?id=com.newsapp.brevity",
+  "shareAppMessage": "Découvrez cette fantastique application d'actualités : Blyft ! Téléchargez-la sur : https://play.google.com/store/apps/details?id=com.newsapp.blyft",
   "dailyRemindersEnabled": "Rappels quotidiens activés",
   "mode": "MODE",
   "lightMode": "Mode Clair",
@@ -263,7 +263,7 @@
   "tapAIButtonToChat": "Appuyez sur le bouton IA pour chatter",
   "tapAnywhereToContinue": "Appuyez n'importe où pour continuer",
   "stepStatus": "Étape {current} sur {total}",
-  "joinBrevityCommunity": "Rejoignez la communauté Brevity",
+  "joinBrevityCommunity": "Rejoignez la communauté Blyft",
   "enterYourFullName": "Entrez votre nom complet",
   "nameIsRequired": "Le nom est requis",
   "enterYourEmail": "Entrez votre email",
@@ -304,7 +304,7 @@
   "backToLogin": "Retour à la Connexion",
   "verifyYourEmail": "Vérifiez Votre Email",
   "checkYourEmailToContinue": "Vérifiez votre email pour continuer",
-  "activateYourBrevityAccount": "Activez votre compte Brevity",
+  "activateYourBrevityAccount": "Activez votre compte Blyft",
   "verificationPending": "Vérification en Attente",
   "checkVerification": "VÉRIFIER",
   "resendEmail": "RENVOYER L'EMAIL",
@@ -315,5 +315,9 @@
   "exploreOtherSections": "Explorer d'autres sections",
   "youreDoneForTheDay": "Vous avez terminé pour aujourd'hui",
   "takeAWellDeservedBreak": "Prenez une pause bien méritée",
-  "failedToOpenArticle": "Échec de l'ouverture de l'article"
+  "failedToOpenArticle": "Échec de l'ouverture de l'article",
+  "preferences": "Préférences",
+  "app": "Application",
+  "account": "Compte",
+  "resultsFor": "Résultats pour"
 }

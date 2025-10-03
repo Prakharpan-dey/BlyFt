@@ -22,3 +22,4 @@ class SendMessage extends ChatEvent {
 
 class ClearChat extends ChatEvent {}
 
+

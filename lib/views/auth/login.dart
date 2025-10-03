@@ -1,10 +1,12 @@
 import 'dart:math' as math;
 
-import 'package:brevity/controller/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:brevity/l10n/app_localizations.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 
+import '../../controller/services/OAuth_service.dart';
+import '../../controller/services/auth_service.dart';
+import '../../utils/logger.dart';
 import '../common_widgets/auth_header.dart';
 import 'forgot_password.dart';
 
@@ -139,7 +141,9 @@ class _LoginScreenState extends State<LoginScreen>
         _emailError =
             email.isEmpty
                 ? null
-                : (isValid ? null : AppLocalizations.of(context)!.pleaseEnterValidEmail);
+                : (isValid
+                    ? null
+                    : AppLocalizations.of(context)!.pleaseEnterValidEmail);
       });
     }
   }
@@ -444,12 +448,16 @@ class _LoginScreenState extends State<LoginScreen>
                         errorText: _emailError,
                         validator: (v) {
                           if (v == null || v.isEmpty) {
-                            return AppLocalizations.of(context)!.emailIsRequired;
+                            return AppLocalizations.of(
+                              context,
+                            )!.emailIsRequired;
                           }
                           if (!RegExp(
                             r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
                           ).hasMatch(v)) {
-                            return AppLocalizations.of(context)!.pleaseEnterValidEmail;
+                            return AppLocalizations.of(
+                              context,
+                            )!.pleaseEnterValidEmail;
                           }
                           return null;
                         },
@@ -460,7 +468,8 @@ class _LoginScreenState extends State<LoginScreen>
                       EnhancedTextField(
                         controller: _passwordController,
                         label: AppLocalizations.of(context)!.password,
-                        hintText: AppLocalizations.of(context)!.enterYourPassword,
+                        hintText:
+                            AppLocalizations.of(context)!.enterYourPassword,
                         icon: Icons.lock_outline_rounded,
                         obscureText: _obscurePassword,
                         isValid: _passwordValid,
@@ -487,7 +496,9 @@ class _LoginScreenState extends State<LoginScreen>
                         ),
                         validator: (v) {
                           if (v == null || v.isEmpty) {
-                            return AppLocalizations.of(context)!.passwordIsRequired;
+                            return AppLocalizations.of(
+                              context,
+                            )!.passwordIsRequired;
                           }
                           if (v.length < 6) {
                             return 'Password must be at least 6 characters';
@@ -591,26 +602,72 @@ class _LoginScreenState extends State<LoginScreen>
                         children: [
                           Expanded(
                             child: EnhancedSocialButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 HapticFeedback.lightImpact();
-                                // Google login logic can be added here
+                                setState(() => _isLoading = true);
+
+                                try {
+                                  final success =
+                                      await OAuthService.signInWithGoogle(
+                                        context,
+                                      );
+                                  if (!success) {
+                                    // User cancelled or other non-error condition
+                                    Log.w(
+                                      '<LOGIN_SCREEN> Google sign in was not completed',
+                                    );
+                                  }
+                                } catch (e) {
+                                  Log.e(
+                                    '<LOGIN_SCREEN> Google sign in error: $e',
+                                  );
+                                  // Error handling is done in OAuthService
+                                } finally {
+                                  if (mounted) {
+                                    setState(() => _isLoading = false);
+                                  }
+                                }
                               },
                               icon: Icons.g_mobiledata_rounded,
                               text: AppLocalizations.of(context)!.google,
                               iconColor: const Color(0xFFDB4437),
                               imagePath: 'assets/logos/google.png',
+                              isLoading: _isLoading,
                             ),
                           ),
                           const SizedBox(width: 12),
                           Expanded(
                             child: EnhancedSocialButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 HapticFeedback.lightImpact();
-                                // Apple login logic can be added here
+                                setState(() => _isLoading = true);
+
+                                try {
+                                  final success =
+                                      await OAuthService.signInWithApple(
+                                        context,
+                                      );
+                                  if (!success) {
+                                    // User cancelled or other non-error condition
+                                    Log.w(
+                                      '<LOGIN_SCREEN> Apple sign in was not completed',
+                                    );
+                                  }
+                                } catch (e) {
+                                  Log.e(
+                                    '<LOGIN_SCREEN> Apple sign in error: $e',
+                                  );
+                                  // Error handling is done in OAuthService
+                                } finally {
+                                  if (mounted) {
+                                    setState(() => _isLoading = false);
+                                  }
+                                }
                               },
                               icon: Icons.apple_rounded,
                               text: AppLocalizations.of(context)!.apple,
                               iconColor: Colors.white,
+                              isLoading: _isLoading,
                             ),
                           ),
                         ],
@@ -635,7 +692,10 @@ class _LoginScreenState extends State<LoginScreen>
                               ),
                               children: [
                                 TextSpan(
-                                  text: AppLocalizations.of(context)!.createAccount2,
+                                  text:
+                                      AppLocalizations.of(
+                                        context,
+                                      )!.createAccount2,
                                   style: TextStyle(
                                     color: primaryB,
                                     fontWeight: FontWeight.w700,
@@ -851,11 +911,12 @@ class _EnhancedTextFieldState extends State<EnhancedTextField>
 }
 
 class EnhancedSocialButton extends StatefulWidget {
-  final VoidCallback onPressed;
+  final Future<void> Function() onPressed; // Changed to Future<void>
   final IconData icon;
   final String text;
   final Color iconColor;
   final String? imagePath;
+  final bool isLoading; // Add loading parameter
 
   const EnhancedSocialButton({
     super.key,
@@ -864,6 +925,7 @@ class EnhancedSocialButton extends StatefulWidget {
     required this.text,
     required this.iconColor,
     this.imagePath,
+    this.isLoading = false, // Default to false
   });
 
   @override
@@ -898,14 +960,20 @@ class _EnhancedSocialButtonState extends State<EnhancedSocialButton>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (_) {
-        setState(() => _isHovered = true);
-        _hoverController.forward();
-      },
-      onTapUp: (_) {
-        setState(() => _isHovered = false);
-        _hoverController.reverse();
-      },
+      onTapDown:
+          widget.isLoading
+              ? null
+              : (_) {
+                setState(() => _isHovered = true);
+                _hoverController.forward();
+              },
+      onTapUp:
+          widget.isLoading
+              ? null
+              : (_) {
+                setState(() => _isHovered = false);
+                _hoverController.reverse();
+              },
       onTapCancel: () {
         setState(() => _isHovered = false);
         _hoverController.reverse();
@@ -947,7 +1015,7 @@ class _EnhancedSocialButtonState extends State<EnhancedSocialButton>
                         : null,
               ),
               child: ElevatedButton(
-                onPressed: widget.onPressed,
+                onPressed: widget.isLoading ? null : widget.onPressed,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent,
@@ -955,36 +1023,52 @@ class _EnhancedSocialButtonState extends State<EnhancedSocialButton>
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    widget.imagePath != null
-                        ? Image.asset(
-                          widget.imagePath!,
-                          fit: BoxFit.contain,
-                          width: 24,
-                          height: 24,
-                          errorBuilder: (_, __, ___) {
-                            return Icon(
-                              widget.icon,
-                              color: widget.iconColor,
-                              size: 24,
-                            );
-                          },
+                child:
+                    widget.isLoading
+                        ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.white,
+                            ),
+                          ),
                         )
-                        : Icon(widget.icon, color: widget.iconColor, size: 24),
+                        : Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            widget.imagePath != null
+                                ? Image.asset(
+                                  widget.imagePath!,
+                                  fit: BoxFit.contain,
+                                  width: 24,
+                                  height: 24,
+                                  errorBuilder: (_, __, ___) {
+                                    return Icon(
+                                      widget.icon,
+                                      color: widget.iconColor,
+                                      size: 24,
+                                    );
+                                  },
+                                )
+                                : Icon(
+                                  widget.icon,
+                                  color: widget.iconColor,
+                                  size: 24,
+                                ),
 
-                    const SizedBox(width: 12),
-                    Text(
-                      widget.text,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
+                            const SizedBox(width: 12),
+                            Text(
+                              widget.text,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
               ),
             ),
           );

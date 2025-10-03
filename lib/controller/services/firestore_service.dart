@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:brevity/models/user_model.dart';
-import 'package:brevity/utils/api_config.dart';
-import 'package:brevity/utils/logger.dart';
+import 'package:blyft/models/user_model.dart';
+import 'package:blyft/utils/api_config.dart';
+import 'package:blyft/utils/logger.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -418,3 +418,4 @@ class UserRepository {
     }
   }
 }
+

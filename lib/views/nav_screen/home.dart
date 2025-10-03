@@ -1,24 +1,26 @@
-import 'package:brevity/controller/bloc/bookmark_bloc/bookmark_bloc.dart';
-import 'package:brevity/controller/bloc/bookmark_bloc/bookmark_event.dart';
-import 'package:brevity/controller/bloc/bookmark_bloc/bookmark_state.dart';
-import 'package:brevity/controller/bloc/news_scroll_bloc/news_scroll_bloc.dart';
-import 'package:brevity/controller/cubit/theme/theme_cubit.dart';
-import 'package:brevity/models/article_model.dart';
-import 'package:brevity/models/news_category.dart';
-import 'package:brevity/utils/logger.dart';
+import 'package:blyft/controller/bloc/bookmark_bloc/bookmark_bloc.dart';
+import 'package:blyft/controller/bloc/bookmark_bloc/bookmark_event.dart';
+import 'package:blyft/controller/bloc/bookmark_bloc/bookmark_state.dart';
+import 'package:blyft/controller/bloc/news_scroll_bloc/news_scroll_bloc.dart';
+import 'package:blyft/controller/cubit/theme/theme_cubit.dart';
+import 'package:blyft/models/article_model.dart';
+import 'package:blyft/models/news_category.dart';
+import 'package:blyft/utils/logger.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:brevity/controller/services/reaction_service.dart';
+import 'package:blyft/controller/services/reaction_service.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:brevity/controller/services/tutorial_service.dart';
+import 'package:blyft/controller/services/tutorial_service.dart';
+import 'package:share_plus/share_plus.dart';
 import '../common_widgets/end_of_news.dart';
 import '../common_widgets/tutorial_overlay_widget.dart';
+import '../../controller/services/backend_service.dart';
 
 class HomeScreen extends StatelessWidget {
   final NewsCategory category;
@@ -381,8 +383,9 @@ class _NewsCardState extends State<_NewsCard> {
     if (isLiked && !previousLiked) {
       ReactionQueue().enqueueLike(widget.article);
       // If we had previously disliked and now switched to like, enqueue removal of dislike
-      if (previousDisliked)
+      if (previousDisliked) {
         ReactionQueue().enqueueRemoveDislike(widget.article);
+      }
     } else if (!isLiked && previousLiked) {
       ReactionQueue().enqueueRemoveLike(widget.article);
     }
@@ -406,7 +409,9 @@ class _NewsCardState extends State<_NewsCard> {
 
     if (isDisliked && !previousDisliked) {
       ReactionQueue().enqueueDislike(widget.article);
-      if (previousLiked) ReactionQueue().enqueueRemoveLike(widget.article);
+      if (previousLiked) {
+        ReactionQueue().enqueueRemoveLike(widget.article);
+      }
     } else if (!isDisliked && previousDisliked) {
       ReactionQueue().enqueueRemoveDislike(widget.article);
     }
@@ -414,6 +419,51 @@ class _NewsCardState extends State<_NewsCard> {
     Log.d(
       'Article ${isDisliked ? 'disliked' : 'undisliked'}: ${widget.article.title}',
     );
+  }
+
+  Future<void> _handleShare() async {
+    try {
+      // Prepare article data for the API
+      final articleData = {
+        'title': widget.article.title,
+        'description': widget.article.description,
+        'url': widget.article.url,
+        'urlToImage': widget.article.urlToImage,
+        'publishedAt': widget.article.publishedAt.toIso8601String(),
+        'sourceName': widget.article.sourceName,
+        'author': widget.article.author,
+        'content': widget.article.content,
+      };
+
+      // Call the share API
+      final response = await ApiService().shareArticle(articleData);
+
+      if (response.success && response.data != null) {
+        final shareId = response.data['newsId'];
+        final shareUrl = 'blyft://share?id=$shareId';
+        Log.d('Share URL: $shareUrl');
+
+        await Share.share(
+          'Check out this article: ${widget.article.title}\n\n$shareUrl',
+          subject: widget.article.title,
+        );
+        Log.d('Article shared successfully with id: $shareId');
+      } else {
+        // Fallback: share the original URL
+        await Share.share(
+          'Check out this article: ${widget.article.title}\n\n${widget.article.url}',
+          subject: widget.article.title,
+        );
+        Log.w('API share failed, shared original URL: ${response.message}');
+      }
+    } catch (e) {
+      // On error, share the original URL
+      await Share.share(
+        'Check out this article: ${widget.article.title}\n\n${widget.article.url}',
+        subject: widget.article.title,
+      );
+      Log.e('Share error, shared original URL', e);
+    }
   }
 
   @override
@@ -745,6 +795,14 @@ class _NewsCardState extends State<_NewsCard> {
                       ),
                       onPressed: () => _launchUrl(widget.article.url),
                     ),
+                    IconButton(
+                      icon: const Icon(
+                        Icons.share_rounded,
+                        color: Colors.white,
+                        size: 28,
+                      ),
+                      onPressed: _handleShare,
+                    ),
 
                     Spacer(),
 
@@ -839,3 +897,4 @@ Future<void> _launchUrl(String url) async {
     throw Exception('Could not launch $url');
   }
 }
+

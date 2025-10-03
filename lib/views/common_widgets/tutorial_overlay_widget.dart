@@ -1,3 +1,4 @@
+import 'package:blyft/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
@@ -643,10 +644,11 @@ class TutorialOverlay {
         // Allow overlay clicks to continue tutorial
       },
       onSkip: () {
-        print("Skip button pressed!");
+        Log.d("Skip button pressed!");
         onFinish();
         return true;
       },
     ).show(context: context);
   }
 }
+

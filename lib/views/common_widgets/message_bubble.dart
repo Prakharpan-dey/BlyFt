@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:brevity/l10n/app_localizations.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 
 class MessageBubble extends StatelessWidget {
   final String message;
@@ -63,3 +63,4 @@ class MessageBubble extends StatelessWidget {
     );
   }
 }
+

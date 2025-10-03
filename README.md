@@ -1,6 +1,6 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Yash159357/NewsAI/main/assets/logos/Brevity_white.png" width="200"/>
-  <h1>🚀 Brevity - Short, Smart, Straight to the point</h1>
+  <img src="https://raw.githubusercontent.com/Yash159357/NewsAI/main/assets/logos/BlyFt_white.png" width="200"/>
+  <h1>🚀 BlyFt - Short, Smart, Straight to the point</h1>
   <p>
     <b>Stay informed effortlessly with real-time news, seamless navigation, and a personalized reading experience.</b>
   </p>
@@ -28,10 +28,10 @@
        </thead>
      <tbody>
        <tr>
-         <td><img alt="Stars" src="https://img.shields.io/github/stars/Yash159357/BREVITY?style=flat&logo=github"/></td>
-         <td><img alt="Forks" src="https://img.shields.io/github/forks/Yash159357/BREVITY?style=flat&logo=github"/></td>
-         <td><img alt="Issues" src="https://img.shields.io/github/issues/Yash159357/BREVITY?style=flat&logo=github"/></td>
-         <td><img alt="Open Pull Requests" src="https://img.shields.io/github/issues-pr/Yash159357/BREVITY?style=flat&logo=github"/></td>
+         <td><img alt="Stars" src="https://img.shields.io/github/stars/Yash159357/BlyFt?style=flat&logo=github"/></td>
+         <td><img alt="Forks" src="https://img.shields.io/github/forks/Yash159357/BlyFt?style=flat&logo=github"/></td>
+         <td><img alt="Issues" src="https://img.shields.io/github/issues/Yash159357/BlyFt?style=flat&logo=github"/></td>
+         <td><img alt="Open Pull Requests" src="https://img.shields.io/github/issues-pr/Yash159357/BlyFt?style=flat&logo=github"/></td>
        </tr>
      </tbody>
   </table>
@@ -59,7 +59,7 @@
   </table>
 </div>
 
-🎉 **Exciting News!** Brevity has been selected for **GirlScript Summer of Code (GSSoC) 2025** and **Hacktoberfest 2025**!
+🎉 **Exciting News!** BlyFt has been selected for **GirlScript Summer of Code (GSSoC) 2025** and **Hacktoberfest 2025**!
 
 📢 **Want to contribute?** Join our community Discord server to connect with maintainers and fellow contributors. We welcome all contributors - from beginners to experienced developers. Let's build something amazing together! 🚀
 
@@ -85,7 +85,7 @@
       <a href="https://youtube.com/shorts/W4c6BxAAhHM?feature=share" target="_blank">
         <img src="https://raw.githubusercontent.com/Yash159357/NewsAI/main/assets/logos/hidden_images/Video.jpeg" width="250"/>
         <br/>
-        <b>BrevityVideo1</b>
+        <b>BlyFtVideo1</b>
       </a>
       <p>Login & SignUp</p>
     </td>
@@ -93,7 +93,7 @@
       <a href="https://youtube.com/shorts/C1DUbo6K_2Y?feature=share" target="_blank">
         <img src="https://raw.githubusercontent.com/Yash159357/NewsAI/main/assets/logos/hidden_images/Video.jpeg" width="250"/>
         <br/>
-        <b>BrevityVideo2</b>
+        <b>BlyFtVideo2</b>
       </a>
       <p>Home Screen and Chatbot</p>
     </td>
@@ -101,7 +101,7 @@
       <a href="https://youtube.com/shorts/wUJMbrjznGQ?feature=share" target="_blank">
         <img src="https://raw.githubusercontent.com/Yash159357/NewsAI/main/assets/logos/hidden_images/Video.jpeg" width="250"/>
         <br/>
-        <b>BrevityVideo3</b>
+        <b>BlyFtVideo3</b>
       </a>
       <p>Additional Features</p>
     </td>
@@ -111,7 +111,7 @@
 <details>
 <summary>📱 View App Screenshots</summary>
 <p align="center">
-	<img src="https://raw.githubusercontent.com/Yash159357/NewsAI/main/assets/logos/hidden_images/Brevity.png" width="22%"/>
+	<img src="https://raw.githubusercontent.com/Yash159357/NewsAI/main/assets/logos/hidden_images/BlyFt.png" width="22%"/>
 	<img src="https://raw.githubusercontent.com/Yash159357/NewsAI/main/assets/logos/hidden_images/Login.png" alt="Profile Screen" width="22%"/>
 	<img src="https://raw.githubusercontent.com/Yash159357/NewsAI/main/assets/logos/hidden_images/Theme.png" alt="Profile Screen" width="22%"/>
 	<img src="https://raw.githubusercontent.com/Yash159357/NewsAI/main/assets/logos/hidden_images/Home.png" alt="Transactions Screen" width="22%"/>
@@ -165,7 +165,7 @@
 ## 📁 Folder Structure
 
 ```bash
-brevity/
+blyft/
 ├── .github/             # GitHub workflows, CI/CD pipelines, issue/PR templates
 ├── assets/              # Project-wide static assets (images, logos, icons, etc.)
 ├── flutter/             # Mobile app source code (Dart, BLoC, models, views, controllers)
@@ -176,7 +176,7 @@ brevity/
 ```
 ## 🔮 Future Plans
 
-We're constantly evolving and have some exciting ideas in the pipeline to make Brevity even more engaging and trustworthy:
+We're constantly evolving and have some exciting ideas in the pipeline to make BlyFt even more engaging and trustworthy:
 
 - **60-word Summaries** ✍️ - Every article condensed into a crisp, 60-word summary for quick insights, saving you even more time.
 - **Smart Notifications** 🔔 - Personalized alerts for breaking news and topics you care about, delivering crucial updates.
@@ -184,7 +184,7 @@ We're constantly evolving and have some exciting ideas in the pipeline to make B
 - **Multi-Language Support** 🌍 - Expanding our reach by offering news content and the app interface in multiple languages.
 - **Daily Audio Briefings** 🎙️ - Curated daily news playlists and podcast-style summaries to start your day informed.
 - **Enhanced AI Chat** 🧠 - Continuously improving our AI's speed, accuracy, and conversational abilities for even better answers.
-- **Website** 💻 - A companion website for all information about brevity.
+- **Website** 💻 - A companion website for all information about blyft.
 
 ---
 
@@ -197,7 +197,7 @@ We welcome contributions! Please read our [Contributing Guidelines](.github/CONT
 </div>
 
 
-  <i>Thank you to all our contributors for making Brevity amazing! 💝</i>
+  <i>Thank you to all our contributors for making BlyFt amazing! 💝</i>
 
 
 <!-- readme: contributors -start -->
@@ -233,12 +233,21 @@ We welcome contributions! Please read our [Contributing Guidelines](.github/CONT
                 </a>
             </td>
             <td align="center">
-                <a href="https://github.com/garys-demons">
-                    <img src="https://avatars.githubusercontent.com/u/178498812?v=4" width="100;" alt="garys-demons"/>
+                <a href="https://github.com/Chanu716">
+                    <img src="https://avatars.githubusercontent.com/u/157685732?v=4" width="100;" alt="Chanu716"/>
                     <br />
-                    <sub><b>garys-demons</b></sub>
+                    <sub><b>Chanu716</b></sub>
                 </a>
             </td>
+            <td align="center">
+                <a href="https://github.com/Vrushabh102">
+                    <img src="https://avatars.githubusercontent.com/u/127824424?v=4" width="100;" alt="Vrushabh102"/>
+                    <br />
+                    <sub><b>Vrushabh102</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/mahi23jj">
                     <img src="https://avatars.githubusercontent.com/u/168651583?v=4" width="100;" alt="mahi23jj"/>
@@ -246,13 +255,11 @@ We welcome contributions! Please read our [Contributing Guidelines](.github/CONT
                     <sub><b>mahi23jj</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
-                <a href="https://github.com/Vrushabh102">
-                    <img src="https://avatars.githubusercontent.com/u/127824424?v=4" width="100;" alt="Vrushabh102"/>
+                <a href="https://github.com/garys-demons">
+                    <img src="https://avatars.githubusercontent.com/u/178498812?v=4" width="100;" alt="garys-demons"/>
                     <br />
-                    <sub><b>Vrushabh102</b></sub>
+                    <sub><b>garys-demons</b></sub>
                 </a>
             </td>
             <td align="center">
@@ -283,6 +290,8 @@ We welcome contributions! Please read our [Contributing Guidelines](.github/CONT
                     <sub><b>alzz-26</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/suto6">
                     <img src="https://avatars.githubusercontent.com/u/169282051?v=4" width="100;" alt="suto6"/>
@@ -290,8 +299,6 @@ We welcome contributions! Please read our [Contributing Guidelines](.github/CONT
                     <sub><b>suto6</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/Vriti62">
                     <img src="https://avatars.githubusercontent.com/u/136335873?v=4" width="100;" alt="Vriti62"/>
@@ -327,6 +334,8 @@ We welcome contributions! Please read our [Contributing Guidelines](.github/CONT
                     <sub><b>22sakshiagarwal</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/NavyasreeBalu">
                     <img src="https://avatars.githubusercontent.com/u/182435415?v=4" width="100;" alt="NavyasreeBalu"/>
@@ -334,8 +343,6 @@ We welcome contributions! Please read our [Contributing Guidelines](.github/CONT
                     <sub><b>NavyasreeBalu</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/dharapandya85">
                     <img src="https://avatars.githubusercontent.com/u/109461918?v=4" width="100;" alt="dharapandya85"/>
@@ -371,6 +378,8 @@ We welcome contributions! Please read our [Contributing Guidelines](.github/CONT
                     <sub><b>aaryapoyrekar</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/vansh909">
                     <img src="https://avatars.githubusercontent.com/u/133160909?v=4" width="100;" alt="vansh909"/>

@@ -11,7 +11,7 @@ class AnimatedHeader extends StatefulWidget {
     super.key,
     required this.title,
     required this.subtitle,
-    this.logoAssetPath = 'assets/logos/brevity_logo.png',
+    this.logoAssetPath = 'assets/logos/blyft_logo.png',
     required this.screenSize,
     this.isLandscape = false,
   });
@@ -164,3 +164,4 @@ class _AnimatedHeaderState extends State<AnimatedHeader>
     );
   }
 }
+

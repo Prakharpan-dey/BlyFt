@@ -75,43 +75,8 @@ class _IntroductionScreenState extends State<IntroductionScreen>
               'Choose your preferred theme and customize your reading experience with multiple color options.',
           icon: Icons.palette_outlined,
         ),
-      ];
+    ];
 
-  @override
-  void initState() {
-    super.initState();
-    _initAnimations();
-  }
-
-  void _initAnimations() {
-    _floatController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 4200),
-    );
-
-    _pulseController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 2200),
-    );
-
-    _particleController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 5),
-    );
-
-    _floatAnim = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _floatController, curve: Curves.easeInOut),
-    );
-
-    _pulseAnim = Tween<double>(begin: 1.0, end: 1.04).animate(
-      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
-    );
-
-    // Start background animations
-    _floatController.repeat(reverse: true);
-    _pulseController.repeat(reverse: true);
-    _particleController.repeat();
-  }
 
   @override
   void dispose() {
@@ -918,3 +883,4 @@ class IntroPage {
     required this.icon,
   });
 }
+

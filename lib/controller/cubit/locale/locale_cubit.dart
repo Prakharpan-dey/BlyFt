@@ -1,3 +1,4 @@
+import 'package:blyft/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,10 +28,10 @@ class LocaleCubit extends Cubit<LocaleState> {
     try {
       final prefs = await SharedPreferences.getInstance();
       final localeCode = prefs.getString(_localeKey) ?? 'en';
-      print('[LocaleCubit] Loading saved locale: $localeCode');
+      Log.d('[LocaleCubit] Loading saved locale: $localeCode');
       emit(LocaleLoaded(locale: Locale(localeCode)));
     } catch (e) {
-      print('[LocaleCubit] Error loading locale: $e');
+      Log.d('[LocaleCubit] Error loading locale: $e');
       emit(const LocaleLoaded(locale: Locale('en')));
     }
   }
@@ -38,30 +39,30 @@ class LocaleCubit extends Cubit<LocaleState> {
   void changeLocale(String languageName) async {
     try {
       final localeCode = supportedLanguages[languageName];
-      print('[LocaleCubit] Changing locale by language name: $languageName -> $localeCode');
+      Log.d('[LocaleCubit] Changing locale by language name: $languageName -> $localeCode');
       if (localeCode != null) {
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString(_localeKey, localeCode);
         emit(LocaleLoaded(locale: Locale(localeCode)));
-        print('[LocaleCubit] Locale changed successfully to: $localeCode');
+        Log.d('[LocaleCubit] Locale changed successfully to: $localeCode');
       } else {
-        print('[LocaleCubit] Invalid language name: $languageName');
+        Log.d('[LocaleCubit] Invalid language name: $languageName');
       }
     } catch (e) {
-      print('[LocaleCubit] Error changing locale by language name: $e');
+      Log.d('[LocaleCubit] Error changing locale by language name: $e');
       // Handle error - stay with current locale
     }
   }
 
   void changeLocaleByCode(String localeCode) async {
     try {
-      print('[LocaleCubit] Changing locale by code: $localeCode');
+      Log.d('[LocaleCubit] Changing locale by code: $localeCode');
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString(_localeKey, localeCode);
       emit(LocaleLoaded(locale: Locale(localeCode)));
-      print('[LocaleCubit] Locale changed successfully to: $localeCode');
+      Log.d('[LocaleCubit] Locale changed successfully to: $localeCode');
     } catch (e) {
-      print('[LocaleCubit] Error changing locale by code: $e');
+      Log.d('[LocaleCubit] Error changing locale by code: $e');
       // Handle error - stay with current locale
     }
   }

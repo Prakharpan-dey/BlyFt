@@ -115,7 +115,7 @@ abstract class AppLocalizations {
   /// The title of the application
   ///
   /// In en, this message translates to:
-  /// **'Brevity'**
+  /// **'Blyft'**
   String get appTitle;
 
   /// Cancel button
@@ -949,7 +949,7 @@ abstract class AppLocalizations {
   /// Create account subtitle
   ///
   /// In en, this message translates to:
-  /// **'Join the Brevity community'**
+  /// **'Join the Blyft community'**
   String get joinBrevityCommunity;
 
   /// Full name field hint
@@ -1057,7 +1057,7 @@ abstract class AppLocalizations {
   /// Login screen subtitle
   ///
   /// In en, this message translates to:
-  /// **'Sign in to your Brevity account'**
+  /// **'Sign in to your Blyft account'**
   String get signInToAccount;
 
   /// Password field hint
@@ -1375,7 +1375,7 @@ abstract class AppLocalizations {
   /// Alternative email verification subtitle
   ///
   /// In en, this message translates to:
-  /// **'Activate your Brevity account'**
+  /// **'Activate your Blyft account'**
   String get activateYourBrevityAccount;
 
   /// Verification pending status
@@ -1533,6 +1533,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'SKIP'**
   String get skip;
+
+  /// Preferences section header
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences'**
+  String get preferences;
+
+  /// App section header
+  ///
+  /// In en, this message translates to:
+  /// **'App'**
+  String get app;
+
+  /// Account section header
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// Search results header prefix
+  ///
+  /// In en, this message translates to:
+  /// **'Results for'**
+  String get resultsFor;
 }
 
 class _AppLocalizationsDelegate

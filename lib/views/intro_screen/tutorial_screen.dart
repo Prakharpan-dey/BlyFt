@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:brevity/l10n/app_localizations.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 
 class TutorialScreen extends StatefulWidget {
-  const TutorialScreen({Key? key}) : super(key: key);
+  const TutorialScreen({super.key});
 
   @override
   State<TutorialScreen> createState() => _TutorialScreenState();
@@ -158,3 +158,4 @@ class _TutorialScreenState extends State<TutorialScreen>
     );
   }
 }
+

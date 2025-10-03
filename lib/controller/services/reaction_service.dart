@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:brevity/models/article_model.dart';
-import 'package:brevity/controller/services/backend_service.dart' as backend;
-import 'package:brevity/controller/services/auth_service.dart' as auth;
-import 'package:brevity/utils/logger.dart';
+import 'package:blyft/models/article_model.dart';
+import 'package:blyft/controller/services/backend_service.dart' as backend;
+import 'package:blyft/controller/services/auth_service.dart' as auth;
+import 'package:blyft/utils/logger.dart';
 import 'package:http/http.dart' as http;
 
 class _ReactionRequest {
@@ -219,3 +219,4 @@ class ReactionQueue {
   bool isArticleLiked(String url) => _likedUrls.contains(url);
   bool isArticleDisliked(String url) => _dislikedUrls.contains(url);
 }
+

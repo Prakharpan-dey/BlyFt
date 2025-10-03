@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for contributing to Brevity! If your issue doesn't fit into our other categories, please use this template.
+        Thank you for contributing to BlyFt! If your issue doesn't fit into our other categories, please use this template.
 
   - type: checkboxes
     id: terms

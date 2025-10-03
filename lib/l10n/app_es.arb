@@ -1,6 +1,6 @@
 {
   "@@locale": "es",
-  "appTitle": "Brevity",
+  "appTitle": "Blyft",
   "cancel": "Cancelar",
   "save": "Guardar",
   "retry": "Reintentar",
@@ -250,7 +250,7 @@
   "stayUpdatedLatestNews": "Mantente actualizado con las últimas noticias",
   "features": "Características",
   "developers": "Desarrolladores",
-  "shareAppMessage": "¡Echa un vistazo a esta increíble app de noticias: Brevity! Descárgala en: https://play.google.com/store/apps/details?id=com.newsapp.brevity",
+  "shareAppMessage": "¡Echa un vistazo a esta increíble app de noticias: Blyft! Descárgala en: https://play.google.com/store/apps/details?id=com.newsapp.blyft",
   "dailyRemindersEnabled": "Recordatorios diarios habilitados",
   "mode": "MODO",
   "lightMode": "Modo Claro",
@@ -263,7 +263,7 @@
   "tapAIButtonToChat": "Toca el botón AI para chatear",
   "tapAnywhereToContinue": "Toca en cualquier lugar para continuar",
   "stepStatus": "Paso {current} de {total}",
-  "joinBrevityCommunity": "Únete a la comunidad Brevity",
+  "joinBrevityCommunity": "Únete a la comunidad Blyft",
   "enterYourFullName": "Ingresa tu nombre completo",
   "nameIsRequired": "El nombre es requerido",
   "enterYourEmail": "Ingresa tu email",
@@ -304,7 +304,7 @@
   "backToLogin": "Volver al Inicio de Sesión",
   "verifyYourEmail": "Verifica Tu Email",
   "checkYourEmailToContinue": "Revisa tu email para continuar",
-  "activateYourBrevityAccount": "Activa tu cuenta de Brevity",
+  "activateYourBrevityAccount": "Activa tu cuenta de Blyft",
   "verificationPending": "Verificación Pendiente",
   "checkVerification": "VERIFICAR",
   "resendEmail": "REENVIAR EMAIL",
@@ -315,5 +315,9 @@
   "exploreOtherSections": "Explorar otras secciones",
   "youreDoneForTheDay": "Ya terminaste por hoy",
   "takeAWellDeservedBreak": "Tómate un merecido descanso",
-  "failedToOpenArticle": "Error al abrir el artículo"
+  "failedToOpenArticle": "Error al abrir el artículo",
+  "preferences": "Preferencias",
+  "app": "Aplicación",
+  "account": "Cuenta",
+  "resultsFor": "Resultados para"
 }

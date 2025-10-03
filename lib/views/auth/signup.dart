@@ -1,12 +1,12 @@
 import 'dart:io';
 import 'dart:math' as math;
 
-import 'package:brevity/controller/services/auth_service.dart';
+import 'package:blyft/controller/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:brevity/l10n/app_localizations.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 
 import '../common_widgets/auth_header.dart';
 
@@ -657,10 +657,8 @@ class _SignupScreenState extends State<SignupScreen>
                               isValid: _nameValid,
                               errorText: _nameError,
                               validator: (v) {
-                                if (v == null || v.isEmpty)
-                                  return AppLocalizations.of(context)!.nameIsRequired;
-                                if (v.length < 2)
-                                  return 'Name must be at least 2 characters';
+                                if (v == null || v.isEmpty) return AppLocalizations.of(context)!.nameIsRequired;
+                                if (v.length < 2) return 'Name must be at least 2 characters';
                                 return null;
                               },
                             ),
@@ -1527,3 +1525,4 @@ class _EnhancedSocialButtonState extends State<EnhancedSocialButton>
     );
   }
 }
+

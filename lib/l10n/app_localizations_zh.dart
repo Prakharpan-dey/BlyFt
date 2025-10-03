@@ -9,7 +9,7 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get appTitle => 'Brevity';
+  String get appTitle => 'Blyft';
 
   @override
   String get cancel => '取消';
@@ -626,7 +626,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get shareAppMessage =>
-      '看看这个很棒的新闻应用：Brevity！在这里下载：https://play.google.com/store/apps/details?id=com.newsapp.brevity';
+      '看看这个很棒的新闻应用：Blyft！在这里下载：https://play.google.com/store/apps/details?id=com.newsapp.blyft';
 
   @override
   String dailyRemindersEnabled(String time) {
@@ -727,4 +727,16 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get skip => '跳过';
+
+  @override
+  String get preferences => '偏好设置';
+
+  @override
+  String get app => '应用';
+
+  @override
+  String get account => '账户';
+
+  @override
+  String get resultsFor => '搜索结果';
 }

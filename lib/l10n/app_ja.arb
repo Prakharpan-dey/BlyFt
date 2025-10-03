@@ -1,6 +1,6 @@
 {
   "@@locale": "ja",
-  "appTitle": "Brevity",
+  "appTitle": "Blyft",
   "cancel": "キャンセル",
   "save": "保存",
   "retry": "再試行",
@@ -250,7 +250,7 @@
   "stayUpdatedLatestNews": "最新ニュースで最新情報を入手",
   "features": "機能",
   "developers": "開発者",
-  "shareAppMessage": "この素晴らしいニュースアプリをチェックしてください: Brevity! ダウンロードはこちら: https://play.google.com/store/apps/details?id=com.newsapp.brevity",
+  "shareAppMessage": "この素晴らしいニュースアプリをチェックしてください: Blyft! ダウンロードはこちら: https://play.google.com/store/apps/details?id=com.newsapp.blyft",
   "dailyRemindersEnabled": "毎日のリマインダーが有効です",
   "mode": "モード",
   "lightMode": "ライトモード",
@@ -315,5 +315,9 @@
   "exploreOtherSections": "他のセクションを探索",
   "youreDoneForTheDay": "今日は完了です",
   "takeAWellDeservedBreak": "十分に休憩を取ってください",
-  "failedToOpenArticle": "記事を開くことができませんでした"
+  "failedToOpenArticle": "記事を開くことができませんでした",
+  "preferences": "環境設定",
+  "app": "アプリ",
+  "account": "アカウント",
+  "resultsFor": "検索結果"
 }

@@ -9,7 +9,7 @@ class AppLocalizationsJa extends AppLocalizations {
   AppLocalizationsJa([String locale = 'ja']) : super(locale);
 
   @override
-  String get appTitle => 'Brevity';
+  String get appTitle => 'Blyft';
 
   @override
   String get cancel => 'キャンセル';
@@ -626,7 +626,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get shareAppMessage =>
-      'この素晴らしいニュースアプリをチェックしてください: Brevity! ダウンロードはこちら: https://play.google.com/store/apps/details?id=com.newsapp.brevity';
+      'この素晴らしいニュースアプリをチェックしてください: Blyft! ダウンロードはこちら: https://play.google.com/store/apps/details?id=com.newsapp.blyft';
 
   @override
   String dailyRemindersEnabled(String time) {
@@ -731,4 +731,16 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get skip => 'スキップ';
+
+  @override
+  String get preferences => '環境設定';
+
+  @override
+  String get app => 'アプリ';
+
+  @override
+  String get account => 'アカウント';
+
+  @override
+  String get resultsFor => '検索結果';
 }

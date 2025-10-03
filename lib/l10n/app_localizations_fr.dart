@@ -9,7 +9,7 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get appTitle => 'Brevity';
+  String get appTitle => 'Blyft';
 
   @override
   String get cancel => 'Annuler';
@@ -444,7 +444,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get joinBrevityCommunity => 'Rejoignez la communauté Brevity';
+  String get joinBrevityCommunity => 'Rejoignez la communauté Blyft';
 
   @override
   String get enterYourFullName => 'Entrez votre nom complet';
@@ -643,7 +643,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get shareAppMessage =>
-      'Découvrez cette fantastique application d\'actualités : Brevity ! Téléchargez-la sur : https://play.google.com/store/apps/details?id=com.newsapp.brevity';
+      'Découvrez cette fantastique application d\'actualités : Blyft ! Téléchargez-la sur : https://play.google.com/store/apps/details?id=com.newsapp.blyft';
 
   @override
   String dailyRemindersEnabled(String time) {
@@ -663,7 +663,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get checkYourEmailToContinue => 'Vérifiez votre email pour continuer';
 
   @override
-  String get activateYourBrevityAccount => 'Activez votre compte Brevity';
+  String get activateYourBrevityAccount => 'Activez votre compte Blyft';
 
   @override
   String get verificationPending => 'Vérification en Attente';
@@ -755,4 +755,16 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get skip => 'IGNORER';
+
+  @override
+  String get preferences => 'Préférences';
+
+  @override
+  String get app => 'Application';
+
+  @override
+  String get account => 'Compte';
+
+  @override
+  String get resultsFor => 'Résultats pour';
 }

@@ -1,10 +1,10 @@
 import 'dart:math' as math;
 
-import 'package:brevity/controller/services/auth_service.dart';
+import 'package:blyft/controller/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:brevity/l10n/app_localizations.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 
 // Enhanced Palette - matching login screen
 const Color bgStart = Color(0xFF070B14);
@@ -299,7 +299,9 @@ class SplashScreenState extends State<SplashScreen>
                           radius: 1.2,
                           colors: [
                             primaryA.withAlpha((element.opacity * 255).toInt()),
-                            primaryB.withAlpha((element.opacity / 2 * 255).toInt()),
+                            primaryB.withAlpha(
+                              (element.opacity / 2 * 255).toInt(),
+                            ),
                             Colors.transparent,
                           ],
                           stops: const [0.0, 0.5, 1.0],
@@ -323,7 +325,7 @@ class SplashScreenState extends State<SplashScreen>
           child: Transform.rotate(
             angle: _logoRotation.value * math.pi,
             child: Image.asset(
-              'assets/logos/Brevity_white.png',
+              'assets/logos/BlyFt_white.png',
               height: 150,
               width: 150,
               fit: BoxFit.contain,
@@ -375,7 +377,7 @@ class SplashScreenState extends State<SplashScreen>
                   fontWeight: FontWeight.w900,
                   color: Colors.white,
                   letterSpacing: -1,
-                  height: 1.0,
+                  height: 1.5,
                 ),
               ),
             ),
@@ -531,7 +533,9 @@ class EnhancedParticlePainter extends CustomPainter {
       // Draw particle with glow effect
       final glowPaint =
           Paint()
-            ..color = particle.color.withAlpha((particle.opacity * 0.3 * 255).toInt())
+            ..color = particle.color.withAlpha(
+              (particle.opacity * 0.3 * 255).toInt(),
+            )
             ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6);
 
       canvas.drawCircle(Offset(finalX, finalY), particle.radius * 2, glowPaint);
@@ -547,3 +551,4 @@ class EnhancedParticlePainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
+

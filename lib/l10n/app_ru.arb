@@ -1,6 +1,6 @@
 {
   "@@locale": "ru",
-  "appTitle": "Brevity",
+  "appTitle": "Blyft",
   "cancel": "Отмена",
   "save": "Сохранить",
   "retry": "Повторить",
@@ -250,7 +250,7 @@
   "stayUpdatedLatestNews": "Будьте в курсе последних новостей",
   "features": "Функции",
   "developers": "Разработчики",
-  "shareAppMessage": "Посмотрите на это замечательное новостное приложение: Brevity! Скачайте его по адресу: https://play.google.com/store/apps/details?id=com.newsapp.brevity",
+  "shareAppMessage": "Посмотрите на это замечательное новостное приложение: Blyft! Скачайте его по адресу: https://play.google.com/store/apps/details?id=com.newsapp.blyft",
   "dailyRemindersEnabled": "Ежедневные напоминания включены",
   "mode": "РЕЖИМ",
   "lightMode": "Светлый Режим",
@@ -263,7 +263,7 @@
   "tapAIButtonToChat": "Нажмите кнопку ИИ, чтобы начать чат",
   "tapAnywhereToContinue": "Нажмите в любом месте, чтобы продолжить",
   "stepStatus": "Шаг {current} из {total}",
-  "joinBrevityCommunity": "Присоединяйтесь к сообществу Brevity",
+  "joinBrevityCommunity": "Присоединяйтесь к сообществу Blyft",
   "enterYourFullName": "Введите ваше полное имя",
   "nameIsRequired": "Имя обязательно",
   "enterYourEmail": "Введите ваш email",
@@ -304,7 +304,7 @@
   "backToLogin": "Вернуться к Входу",
   "verifyYourEmail": "Подтвердите Ваш Email",
   "checkYourEmailToContinue": "Проверьте ваш email, чтобы продолжить",
-  "activateYourBrevityAccount": "Активируйте ваш аккаунт Brevity",
+  "activateYourBrevityAccount": "Активируйте ваш аккаунт Blyft",
   "verificationPending": "Ожидание Подтверждения",
   "checkVerification": "ПРОВЕРИТЬ",
   "resendEmail": "ПЕРЕСЛАТЬ EMAIL",
@@ -315,5 +315,9 @@
   "exploreOtherSections": "Исследовать другие разделы",
   "youreDoneForTheDay": "Вы закончили на сегодня",
   "takeAWellDeservedBreak": "Возьмите заслуженный перерыв",
-  "failedToOpenArticle": "Не удалось открыть статью"
+  "failedToOpenArticle": "Не удалось открыть статью",
+  "preferences": "Настройки",
+  "app": "Приложение",
+  "account": "Аккаунт",
+  "resultsFor": "Результаты для"
 }

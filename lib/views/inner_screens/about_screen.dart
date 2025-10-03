@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:ui';
-import 'package:brevity/controller/cubit/theme/theme_cubit.dart';
-import 'package:brevity/models/theme_model.dart';
+import 'package:blyft/controller/cubit/theme/theme_cubit.dart';
+import 'package:blyft/models/theme_model.dart';
 import '../../l10n/app_localizations.dart';
 
 class AboutUsScreen extends StatefulWidget {
@@ -556,3 +556,4 @@ class _AboutUsScreenState extends State<AboutUsScreen>
     );
   }
 }
+

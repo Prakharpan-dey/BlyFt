@@ -2,15 +2,15 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:brevity/controller/cubit/theme/theme_cubit.dart';
-import 'package:brevity/controller/cubit/user_profile/user_profile_cubit.dart';
-import 'package:brevity/controller/cubit/user_profile/user_profile_state.dart';
-import 'package:brevity/views/common_widgets/common_appbar.dart';
-import 'package:brevity/models/theme_model.dart';
+import 'package:blyft/controller/cubit/theme/theme_cubit.dart';
+import 'package:blyft/controller/cubit/user_profile/user_profile_cubit.dart';
+import 'package:blyft/controller/cubit/user_profile/user_profile_state.dart';
+import 'package:blyft/views/common_widgets/common_appbar.dart';
+import 'package:blyft/models/theme_model.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:image_cropper/image_cropper.dart';
-import 'package:brevity/l10n/app_localizations.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -717,3 +717,4 @@ class _ProfileScreenState extends State<ProfileScreen>
     );
   }
 }
+

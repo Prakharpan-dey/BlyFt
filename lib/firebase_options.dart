@@ -51,6 +51,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '627461571018',
     projectId: 'news-ai-914981',
     storageBucket: 'news-ai-914981.firebasestorage.app',
-    iosBundleId: 'com.unity.brevity',
+    iosBundleId: 'com.unity.blyft',
   );
 }
+

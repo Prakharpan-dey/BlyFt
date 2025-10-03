@@ -1,6 +1,6 @@
 {
   "@@locale": "it",
-  "appTitle": "Brevity",
+  "appTitle": "Blyft",
   "cancel": "Annulla",
   "save": "Salva",
   "retry": "Riprova",
@@ -250,7 +250,7 @@
   "stayUpdatedLatestNews": "Rimani aggiornato con le ultime notizie",
   "features": "Funzionalità",
   "developers": "Sviluppatori",
-  "shareAppMessage": "Dai un'occhiata a questa fantastica app di notizie: Brevity! Scaricala su: https://play.google.com/store/apps/details?id=com.newsapp.brevity",
+  "shareAppMessage": "Dai un'occhiata a questa fantastica app di notizie: Blyft! Scaricala su: https://play.google.com/store/apps/details?id=com.newsapp.blyft",
   "dailyRemindersEnabled": "Promemoria giornalieri attivati",
   "mode": "MODALITÀ",
   "lightMode": "Modalità Chiara",
@@ -263,7 +263,7 @@
   "tapAIButtonToChat": "Tocca il pulsante AI per chattare",
   "tapAnywhereToContinue": "Tocca ovunque per continuare",
   "stepStatus": "Passo {current} di {total}",
-  "joinBrevityCommunity": "Unisciti alla comunità Brevity",
+  "joinBrevityCommunity": "Unisciti alla comunità Blyft",
   "enterYourFullName": "Inserisci il tuo nome completo",
   "nameIsRequired": "Il nome è obbligatorio",
   "enterYourEmail": "Inserisci la tua email",
@@ -304,7 +304,7 @@
   "backToLogin": "Torna all'Accesso",
   "verifyYourEmail": "Verifica la Tua Email",
   "checkYourEmailToContinue": "Controlla la tua email per continuare",
-  "activateYourBrevityAccount": "Attiva il tuo account Brevity",
+  "activateYourBrevityAccount": "Attiva il tuo account Blyft",
   "verificationPending": "Verifica in Attesa",
   "checkVerification": "VERIFICA",
   "resendEmail": "RINVIA EMAIL",
@@ -315,5 +315,9 @@
   "exploreOtherSections": "Esplora altre sezioni",
   "youreDoneForTheDay": "Hai finito per oggi",
   "takeAWellDeservedBreak": "Prenditi una pausa ben meritata",
-  "failedToOpenArticle": "Impossibile aprire l'articolo"
+  "failedToOpenArticle": "Impossibile aprire l'articolo",
+  "preferences": "Preferenze",
+  "app": "App",
+  "account": "Account",
+  "resultsFor": "Risultati per"
 }

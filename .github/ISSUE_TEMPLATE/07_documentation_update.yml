@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for helping improve our documentation! Clear documentation helps everyone contribute to and use Brevity effectively.
+        Thank you for helping improve our documentation! Clear documentation helps everyone contribute to and use BlyFt effectively.
 
   - type: checkboxes
     id: terms

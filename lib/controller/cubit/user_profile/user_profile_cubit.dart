@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:brevity/controller/services/firestore_service.dart'; // This is your UserRepository
-import 'package:brevity/controller/services/auth_service.dart';
+import 'package:blyft/controller/services/firestore_service.dart'; // This is your UserRepository
+import 'package:blyft/controller/services/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../models/user_model.dart';
 import 'user_profile_state.dart';
@@ -531,3 +531,4 @@ class UserProfileCubit extends Cubit<UserProfileState> {
     }
   }
 }
+

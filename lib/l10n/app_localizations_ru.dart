@@ -9,7 +9,7 @@ class AppLocalizationsRu extends AppLocalizations {
   AppLocalizationsRu([String locale = 'ru']) : super(locale);
 
   @override
-  String get appTitle => 'Brevity';
+  String get appTitle => 'Blyft';
 
   @override
   String get cancel => 'Отмена';
@@ -436,7 +436,7 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get joinBrevityCommunity => 'Присоединяйтесь к сообществу Brevity';
+  String get joinBrevityCommunity => 'Присоединяйтесь к сообществу Blyft';
 
   @override
   String get enterYourFullName => 'Введите ваше полное имя';
@@ -636,7 +636,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get shareAppMessage =>
-      'Посмотрите на это замечательное новостное приложение: Brevity! Скачайте его по адресу: https://play.google.com/store/apps/details?id=com.newsapp.brevity';
+      'Посмотрите на это замечательное новостное приложение: Blyft! Скачайте его по адресу: https://play.google.com/store/apps/details?id=com.newsapp.blyft';
 
   @override
   String dailyRemindersEnabled(String time) {
@@ -657,7 +657,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Проверьте ваш email, чтобы продолжить';
 
   @override
-  String get activateYourBrevityAccount => 'Активируйте ваш аккаунт Brevity';
+  String get activateYourBrevityAccount => 'Активируйте ваш аккаунт Blyft';
 
   @override
   String get verificationPending => 'Ожидание Подтверждения';
@@ -747,4 +747,16 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get skip => 'ПРОПУСТИТЬ';
+
+  @override
+  String get preferences => 'Настройки';
+
+  @override
+  String get app => 'Приложение';
+
+  @override
+  String get account => 'Аккаунт';
+
+  @override
+  String get resultsFor => 'Результаты для';
 }

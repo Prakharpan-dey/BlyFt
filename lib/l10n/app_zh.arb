@@ -1,6 +1,6 @@
 {
   "@@locale": "zh",
-  "appTitle": "Brevity",
+  "appTitle": "Blyft",
   "cancel": "取消",
   "save": "保存",
   "retry": "重试",
@@ -250,7 +250,7 @@
   "stayUpdatedLatestNews": "获取最新新闻更新",
   "features": "功能",
   "developers": "开发者",
-  "shareAppMessage": "看看这个很棒的新闻应用：Brevity！在这里下载：https://play.google.com/store/apps/details?id=com.newsapp.brevity",
+  "shareAppMessage": "看看这个很棒的新闻应用：Blyft！在这里下载：https://play.google.com/store/apps/details?id=com.newsapp.blyft",
   "dailyRemindersEnabled": "每日提醒已启用",
   "mode": "模式",
   "lightMode": "浅色模式",
@@ -315,5 +315,9 @@
   "exploreOtherSections": "探索其他部分",
   "youreDoneForTheDay": "您今天的任务完成了",
   "takeAWellDeservedBreak": "好好休息一下",
-  "failedToOpenArticle": "无法打开文章"
+  "failedToOpenArticle": "无法打开文章",
+  "preferences": "偏好设置",
+  "app": "应用",
+  "account": "账户",
+  "resultsFor": "搜索结果"
 }

@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:brevity/controller/bloc/chat_bloc/chat_bloc.dart';
-import 'package:brevity/controller/cubit/theme/theme_cubit.dart';
-import 'package:brevity/controller/services/gemini_service.dart';
-import 'package:brevity/models/article_model.dart';
-import 'package:brevity/models/theme_model.dart';
+import 'package:blyft/controller/bloc/chat_bloc/chat_bloc.dart';
+import 'package:blyft/controller/cubit/theme/theme_cubit.dart';
+import 'package:blyft/controller/services/gemini_service.dart';
+import 'package:blyft/models/article_model.dart';
+import 'package:blyft/models/theme_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -1280,3 +1280,4 @@ class _TypewriterTextState extends State<TypewriterText>
     );
   }
 }
+
