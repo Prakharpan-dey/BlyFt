@@ -368,6 +368,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get newsDescriptionPlaceholder => 'ニュースの説明が利用できません';
 
   @override
+  String get noArticlesFound => '記事が見つかりません。';
+
+  @override
+  String get general => '一般';
+
+  @override
   String get technology => 'テクノロジー';
 
   @override
@@ -743,4 +749,77 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get resultsFor => '検索結果';
+
+  @override
+  String get supportContactMessage =>
+      'サポート、フィードバック、またはアプリに関する質問については、開発チームにお問い合わせください';
+
+  @override
+  String get responseTimeMessage => '通常、1〜2営業日以内に返信いたします';
+
+  @override
+  String get coDeveloper => '共同開発者';
+
+  @override
+  String get sharedNews => '共有ニュース';
+
+  @override
+  String get invalidDataReceived => 'サーバーから無効なデータを受信しました。';
+
+  @override
+  String get failedToLoadNewsArticle => 'ニュース記事の読み込みに失敗しました。';
+
+  @override
+  String get errorLoadingArticle => '記事の読み込み中にエラーが発生しました。';
+
+  @override
+  String get tryAgain => '再試行';
+
+  @override
+  String get newsArticleNotFound => 'ニュース記事が見つかりません';
+
+  @override
+  String get byAuthor => '著者:';
+
+  @override
+  String get couldNotOpenArticle => '記事を開くことができませんでした。';
+
+  @override
+  String get readFullArticle => '記事全文を読む';
+
+  @override
+  String get selectReasonForReporting => '報告の理由を選択してください:';
+
+  @override
+  String get bullyingHarassment => 'いじめ/嫌がらせ';
+
+  @override
+  String get thankYouForReport => '報告ありがとうございます。このコンテンツを確認します。';
+
+  @override
+  String get startConversationAboutArticle => '記事について会話を始めましょう！';
+
+  @override
+  String get chatHistoryWillAppearHere => 'チャット履歴がここに表示されます。';
+
+  @override
+  String get initializingChat => 'チャットを初期化中...';
+
+  @override
+  String get thinking => '考え中...';
+
+  @override
+  String get askAnythingAboutArticle => 'この記事について何でも聞いてください...';
+
+  @override
+  String get pleaseEnterReason => '理由を入力してください（最大50文字）';
+
+  @override
+  String get maxAllowed50Chars => '最大50文字まで許可されています';
+
+  @override
+  String get pleaseSpecifyMax50 => '指定してください（最大50文字）';
+
+  @override
+  String get failedToGetResponse => '応答を取得できませんでした';
 }

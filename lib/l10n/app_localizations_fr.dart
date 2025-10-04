@@ -379,6 +379,12 @@ class AppLocalizationsFr extends AppLocalizations {
       'Description de l\'actualité non disponible';
 
   @override
+  String get noArticlesFound => 'Aucun article trouvé.';
+
+  @override
+  String get general => 'Général';
+
+  @override
   String get technology => 'Technologie';
 
   @override
@@ -767,4 +773,86 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get resultsFor => 'Résultats pour';
+
+  @override
+  String get supportContactMessage =>
+      'Pour le support, les commentaires ou les questions sur l\'application, contactez notre équipe de développement';
+
+  @override
+  String get responseTimeMessage =>
+      'Nous répondons généralement dans un délai de 1 à 2 jours ouvrables';
+
+  @override
+  String get coDeveloper => 'Co-Développeur';
+
+  @override
+  String get sharedNews => 'Actualités Partagées';
+
+  @override
+  String get invalidDataReceived => 'Données invalides reçues du serveur.';
+
+  @override
+  String get failedToLoadNewsArticle =>
+      'Échec du chargement de l\'article d\'actualité.';
+
+  @override
+  String get errorLoadingArticle =>
+      'Une erreur s\'est produite lors du chargement de l\'article.';
+
+  @override
+  String get tryAgain => 'Réessayer';
+
+  @override
+  String get newsArticleNotFound => 'Article d\'actualité non trouvé';
+
+  @override
+  String get byAuthor => 'Par';
+
+  @override
+  String get couldNotOpenArticle => 'Impossible d\'ouvrir l\'article.';
+
+  @override
+  String get readFullArticle => 'Lire l\'Article Complet';
+
+  @override
+  String get selectReasonForReporting =>
+      'Veuillez sélectionner le motif de signalement :';
+
+  @override
+  String get bullyingHarassment => 'Harcèlement/Intimidation';
+
+  @override
+  String get thankYouForReport =>
+      'Merci pour votre signalement. Nous examinerons ce contenu.';
+
+  @override
+  String get startConversationAboutArticle =>
+      'Commencez une conversation sur l\'article !';
+
+  @override
+  String get chatHistoryWillAppearHere =>
+      'Votre historique de chat apparaîtra ici.';
+
+  @override
+  String get initializingChat => 'Initialisation du chat...';
+
+  @override
+  String get thinking => 'Réfléchit...';
+
+  @override
+  String get askAnythingAboutArticle =>
+      'Demandez-moi n\'importe quoi sur cet article...';
+
+  @override
+  String get pleaseEnterReason =>
+      'Veuillez saisir une raison (max 50 caractères)';
+
+  @override
+  String get maxAllowed50Chars => 'Maximum autorisé : 50 caractères';
+
+  @override
+  String get pleaseSpecifyMax50 => 'Veuillez préciser (max 50 caractères)';
+
+  @override
+  String get failedToGetResponse => 'Échec de l\'obtention de la réponse';
 }

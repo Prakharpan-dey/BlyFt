@@ -368,6 +368,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get newsDescriptionPlaceholder => '新闻描述不可用';
 
   @override
+  String get noArticlesFound => '未找到文章。';
+
+  @override
+  String get general => '一般';
+
+  @override
   String get technology => '科技';
 
   @override
@@ -739,4 +745,76 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get resultsFor => '搜索结果';
+
+  @override
+  String get supportContactMessage => '对于支持、反馈或关于应用程序的问题，请联系我们的开发团队';
+
+  @override
+  String get responseTimeMessage => '我们通常在1-2个工作日内回复';
+
+  @override
+  String get coDeveloper => '联合开发者';
+
+  @override
+  String get sharedNews => '共享新闻';
+
+  @override
+  String get invalidDataReceived => '从服务器接收到无效数据。';
+
+  @override
+  String get failedToLoadNewsArticle => '加载新闻文章失败。';
+
+  @override
+  String get errorLoadingArticle => '加载文章时发生错误。';
+
+  @override
+  String get tryAgain => '重试';
+
+  @override
+  String get newsArticleNotFound => '未找到新闻文章';
+
+  @override
+  String get byAuthor => '作者：';
+
+  @override
+  String get couldNotOpenArticle => '无法打开文章。';
+
+  @override
+  String get readFullArticle => '阅读完整文章';
+
+  @override
+  String get selectReasonForReporting => '请选择举报原因：';
+
+  @override
+  String get bullyingHarassment => '霸凌/骚扰';
+
+  @override
+  String get thankYouForReport => '感谢您的举报。我们将审核此内容。';
+
+  @override
+  String get startConversationAboutArticle => '开始关于文章的对话！';
+
+  @override
+  String get chatHistoryWillAppearHere => '您的聊天记录将显示在这里。';
+
+  @override
+  String get initializingChat => '正在初始化聊天...';
+
+  @override
+  String get thinking => '思考中...';
+
+  @override
+  String get askAnythingAboutArticle => '问我关于这篇文章的任何问题...';
+
+  @override
+  String get pleaseEnterReason => '请输入原因（最多50个字符）';
+
+  @override
+  String get maxAllowed50Chars => '最多允许50个字符';
+
+  @override
+  String get pleaseSpecifyMax50 => '请指定（最多50个字符）';
+
+  @override
+  String get failedToGetResponse => '无法获取响应';
 }

@@ -108,9 +108,9 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
               if (!showCustomField) {
                 customError = '';
               } else if (text.isEmpty) {
-                customError = 'Please enter a reason (max 50 characters)';
+                customError = AppLocalizations.of(context)!.pleaseEnterReason;
               } else if (text.length > 50) {
-                customError = 'Maximum allowed is 50 characters';
+                customError = AppLocalizations.of(context)!.maxAllowed50Chars;
               } else {
                 customError = '';
               }
@@ -150,7 +150,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        'Please select the reason for reporting:',
+                        AppLocalizations.of(context)!.selectReasonForReporting,
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                         ),
@@ -185,7 +185,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                             });
                           },
                           decoration: InputDecoration(
-                            hintText: 'Please specify (max 50 characters)',
+                            hintText: AppLocalizations.of(context)!.pleaseSpecifyMax50,
                             errorText: customError.isEmpty ? null : customError,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -272,7 +272,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     void Function(String) onOptionSelected,
   ) {
     final options = [
-      'Bullying/Harassment',
+      AppLocalizations.of(context)!.bullyingHarassment,
       AppLocalizations.of(context)!.inaccurateInformation,
       AppLocalizations.of(context)!.offensiveContent,
       AppLocalizations.of(context)!.spam,
@@ -300,7 +300,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          'Thank you for your report. We will review this content.',
+          AppLocalizations.of(context)!.thankYouForReport,
           style: TextStyle(color: theme.colorScheme.onPrimary),
         ),
         backgroundColor: appTheme.primaryColor,
@@ -691,13 +691,13 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                 ),
                 const Gap(20),
                 Text(
-                  'Start a conversation about the article!',
+                  AppLocalizations.of(context)!.startConversationAboutArticle,
                   style: TextStyle(color: Colors.white70, fontSize: 16),
                   textAlign: TextAlign.center,
                 ),
                 const Gap(10),
                 Text(
-                  'Your chat history will appear here.',
+                  AppLocalizations.of(context)!.chatHistoryWillAppearHere,
                   style: TextStyle(color: Colors.white54, fontSize: 12),
                   textAlign: TextAlign.center,
                 ),
@@ -727,7 +727,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
               ),
               const Gap(20),
               Text(
-                'Initializing chat...',
+                AppLocalizations.of(context)!.initializingChat,
                 style: TextStyle(
                   color: Theme.of(
                     context,
@@ -1039,9 +1039,9 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                               theme.colorScheme.onSurface,
                             ],
                           ).createShader(bounds),
-                      child: const Text(
-                        'Thinking...',
-                        style: TextStyle(
+                      child: Text(
+                        AppLocalizations.of(context)!.thinking,
+                        style: const TextStyle(
                           fontSize: 14,
                           fontStyle: FontStyle.italic,
                           color: Colors.white,
@@ -1093,7 +1093,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                   onChanged:
                       (text) => setState(() => _isComposing = text.isNotEmpty),
                   decoration: InputDecoration(
-                    hintText: 'Ask me anything about this article...',
+                    hintText: AppLocalizations.of(context)!.askAnythingAboutArticle,
                     hintStyle: TextStyle(
                       color: theme.colorScheme.onSurface.withAlpha(
                         (0.6 * 255).toInt(),
@@ -1192,6 +1192,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                                       SendMessage(
                                         message: message,
                                         chatWindow: currentState.chatWindow,
+                                        context: context,
                                       ),
                                     );
                                   }

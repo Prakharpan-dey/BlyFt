@@ -371,6 +371,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get newsDescriptionPlaceholder => 'समाचार विवरण उपलब्ध नहीं';
 
   @override
+  String get noArticlesFound => 'कोई लेख नहीं मिला।';
+
+  @override
+  String get general => 'सामान्य';
+
+  @override
   String get technology => 'प्रौद्योगिकी';
 
   @override
@@ -757,4 +763,81 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get resultsFor => 'परिणाम';
+
+  @override
+  String get supportContactMessage =>
+      'सपोर्ट, फीडबैक या ऐप के बारे में प्रश्नों के लिए, हमारे विकास टीम से संपर्क करें';
+
+  @override
+  String get responseTimeMessage =>
+      'हम आमतौर पर 1-2 व्यावसायिक दिनों के भीतर प्रतिक्रिया देते हैं';
+
+  @override
+  String get coDeveloper => 'सह-डेवलपर';
+
+  @override
+  String get sharedNews => 'साझा की गई खबरें';
+
+  @override
+  String get invalidDataReceived => 'सर्वर से अमान्य डेटा प्राप्त हुआ।';
+
+  @override
+  String get failedToLoadNewsArticle => 'समाचार लेख लोड करने में विफल।';
+
+  @override
+  String get errorLoadingArticle => 'लेख लोड करते समय एक त्रुटि हुई।';
+
+  @override
+  String get tryAgain => 'पुनः प्रयास करें';
+
+  @override
+  String get newsArticleNotFound => 'समाचार लेख नहीं मिला';
+
+  @override
+  String get byAuthor => 'द्वारा';
+
+  @override
+  String get couldNotOpenArticle => 'लेख नहीं खोला जा सका।';
+
+  @override
+  String get readFullArticle => 'पूर्ण लेख पढ़ें';
+
+  @override
+  String get selectReasonForReporting => 'कृपया रिपोर्ट करने का कारण चुनें:';
+
+  @override
+  String get bullyingHarassment => 'बुलिंग/हैरासमेंट';
+
+  @override
+  String get thankYouForReport =>
+      'आपकी रिपोर्ट के लिए धन्यवाद। हम इस सामग्री की समीक्षा करेंगे।';
+
+  @override
+  String get startConversationAboutArticle =>
+      'लेख के बारे में बातचीत शुरू करें!';
+
+  @override
+  String get chatHistoryWillAppearHere => 'आपका चैट इतिहास यहां दिखाई देगा।';
+
+  @override
+  String get initializingChat => 'चैट प्रारंभ हो रहा है...';
+
+  @override
+  String get thinking => 'सोच रहा हूं...';
+
+  @override
+  String get askAnythingAboutArticle =>
+      'इस लेख के बारे में मुझे कुछ भी पूछें...';
+
+  @override
+  String get pleaseEnterReason => 'कृपया एक कारण दर्ज करें (अधिकतम 50 वर्ण)';
+
+  @override
+  String get maxAllowed50Chars => 'अधिकतम अनुमत 50 वर्ण';
+
+  @override
+  String get pleaseSpecifyMax50 => 'कृपया निर्दिष्ट करें (अधिकतम 50 वर्ण)';
+
+  @override
+  String get failedToGetResponse => 'प्रतिक्रिया प्राप्त करने में विफल';
 }

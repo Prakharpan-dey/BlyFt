@@ -191,7 +191,7 @@ class _ContactUsScreenState extends State<ContactUsScreen>
             ),
             const Gap(16),
             Text(
-              'For support, feedback, or questions about the app, reach out to our development team.',
+              AppLocalizations.of(context)!.supportContactMessage,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: Theme.of(context).colorScheme.onSurface.withAlpha((0.7 * 255).toInt()),
                 height: 1.4,
@@ -200,7 +200,7 @@ class _ContactUsScreenState extends State<ContactUsScreen>
             const Gap(24),
             _buildContactCard(
               name: 'Samarth Sharma',
-              role: 'Co-Developer',
+              role: AppLocalizations.of(context)!.coDeveloper,
               email: 'saysamarth26@gmail.com',
               phone: '+91 8800894252',
               theme: appTheme,
@@ -208,7 +208,7 @@ class _ContactUsScreenState extends State<ContactUsScreen>
             const Gap(16),
             _buildContactCard(
               name: 'Yash',
-              role: 'Co-Developer',
+              role: AppLocalizations.of(context)!.coDeveloper,
               email: 'yashmalihan3@gmail.com',
               phone: '+91 8882462047',
               theme: appTheme,
@@ -356,7 +356,7 @@ class _ContactUsScreenState extends State<ContactUsScreen>
             const Gap(8),
             Expanded(
               child: Text(
-                'We typically respond within 1-2 business days',
+                AppLocalizations.of(context)!.responseTimeMessage,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Theme.of(context).colorScheme.onSurface.withAlpha((0.7 * 255).toInt()),
                 ),

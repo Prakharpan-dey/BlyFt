@@ -3,6 +3,7 @@ import 'package:blyft/controller/cubit/theme/theme_state.dart';
 import 'package:blyft/controller/services/news_services.dart';
 import 'package:blyft/models/article_model.dart';
 import 'package:blyft/models/news_category.dart';
+import 'package:blyft/utils/logger.dart';
 import 'package:blyft/views/common_widgets/common_appbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,7 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    Log.i('SIDE_PAGE: Screen started');
     _topNewsFuture = _newsService.fetchGeneralNews(page: 1, pageSize: 3);
 
     context.read<UserProfileCubit>().loadUserProfile();
@@ -88,6 +90,7 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
       );
       return;
     }
+    Log.i('SIDE_PAGE: Navigating to SearchResults with query: $query');
     context.pushNamed('searchResults', queryParameters: {'query': query});
     _searchController.clear();
   }
@@ -104,6 +107,7 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
         return GestureDetector(
           onHorizontalDragEnd: (details) {
             if (details.primaryVelocity! < -5) {
+              Log.i('SIDE_PAGE: Navigating to Home via swipe gesture');
               context.goNamed(
                 'home',
                 pathParameters: {
@@ -151,6 +155,7 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
                                       ),
                                       child: InkWell(
                                         onTap: () {
+                                          Log.i('SIDE_PAGE: Navigating to Profile');
                                           context.push("/sidepage/profile");
                                         },
                                         child:
@@ -171,6 +176,7 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
                                 const Spacer(),
                                 TextButton.icon(
                                   onPressed: () {
+                                    Log.i('SIDE_PAGE: MY FEED button tapped - Navigating to Home');
                                     context.goNamed(
                                       'home',
                                       pathParameters: {
@@ -224,7 +230,10 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
                                     .surfaceContainerHighest
                                     .withAlpha((0.7 * 255).toInt()),
                               ),
-                              onSubmitted: (_) => _handleSearch(),
+                              onSubmitted: (_) {
+                                Log.i('SIDE_PAGE: Search submitted via keyboard');
+                                _handleSearch();
+                              },
                             ),
                           ],
                         ),
@@ -430,13 +439,16 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
       child: InkWell(
         onTap: () {
           if (category != null) {
+            Log.i('SIDE_PAGE: Menu tapped: $text - Navigating to Home with category: $category');
             context.goNamed(
               'home',
               pathParameters: {'category': category.index.toString()},
             );
           } else if (text == AppLocalizations.of(context)!.bookmarks) {
+            Log.i('SIDE_PAGE: Navigating to Bookmarks');
             context.push('/sidepage/bookmark');
           } else if (text == AppLocalizations.of(context)!.settings) {
+            Log.i('SIDE_PAGE: Navigating to Settings');
             context.push('/sidepage/settings');
           }
         },
@@ -563,6 +575,7 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
     final theme = Theme.of(context);
     return GestureDetector(
       onTap: () {
+        Log.i('SIDE_PAGE: Topic tapped: $text - Navigating to Home with category: $category');
         context.goNamed(
           'home',
           pathParameters: {'category': category.index.toString()},

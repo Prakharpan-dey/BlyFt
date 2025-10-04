@@ -372,6 +372,12 @@ class AppLocalizationsEn extends AppLocalizations {
       'News description text will come here...';
 
   @override
+  String get noArticlesFound => 'No articles found.';
+
+  @override
+  String get general => 'General';
+
+  @override
   String get technology => 'Technology';
 
   @override
@@ -756,4 +762,82 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get resultsFor => 'Results for';
+
+  @override
+  String get supportContactMessage =>
+      'For support, feedback, or questions about the app, reach out to our development team';
+
+  @override
+  String get responseTimeMessage =>
+      'We typically respond within 1-2 business days';
+
+  @override
+  String get coDeveloper => 'Co-Developer';
+
+  @override
+  String get sharedNews => 'Shared News';
+
+  @override
+  String get invalidDataReceived => 'Invalid data received from server.';
+
+  @override
+  String get failedToLoadNewsArticle => 'Failed to load news article.';
+
+  @override
+  String get errorLoadingArticle =>
+      'An error occurred while loading the article.';
+
+  @override
+  String get tryAgain => 'Try Again';
+
+  @override
+  String get newsArticleNotFound => 'News article not found';
+
+  @override
+  String get byAuthor => 'By';
+
+  @override
+  String get couldNotOpenArticle => 'Could not open the article.';
+
+  @override
+  String get readFullArticle => 'Read Full Article';
+
+  @override
+  String get selectReasonForReporting =>
+      'Please select the reason for reporting:';
+
+  @override
+  String get bullyingHarassment => 'Bullying/Harassment';
+
+  @override
+  String get thankYouForReport =>
+      'Thank you for your report. We will review this content.';
+
+  @override
+  String get startConversationAboutArticle =>
+      'Start a conversation about the article!';
+
+  @override
+  String get chatHistoryWillAppearHere => 'Your chat history will appear here.';
+
+  @override
+  String get initializingChat => 'Initializing chat...';
+
+  @override
+  String get thinking => 'Thinking...';
+
+  @override
+  String get askAnythingAboutArticle => 'Ask me anything about this article...';
+
+  @override
+  String get pleaseEnterReason => 'Please enter a reason (max 50 characters)';
+
+  @override
+  String get maxAllowed50Chars => 'Maximum allowed is 50 characters';
+
+  @override
+  String get pleaseSpecifyMax50 => 'Please specify (max 50 characters)';
+
+  @override
+  String get failedToGetResponse => 'Failed to get response';
 }

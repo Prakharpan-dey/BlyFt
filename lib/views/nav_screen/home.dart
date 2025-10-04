@@ -18,6 +18,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:blyft/controller/services/tutorial_service.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 import '../common_widgets/end_of_news.dart';
 import '../common_widgets/tutorial_overlay_widget.dart';
 import '../../controller/services/backend_service.dart';
@@ -56,6 +57,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   @override
   void initState() {
     super.initState();
+    Log.i("HOME: HomeScreen started");
     final newsBloc = context.read<NewsBloc>();
     final currentState = newsBloc.state;
 
@@ -116,8 +118,23 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   }
 
   String _getCategoryName(NewsCategory category) {
-    final String name = category.toString().split('.').last;
-    return name[0].toUpperCase() + name.substring(1);
+    final l10n = AppLocalizations.of(context)!;
+    switch (category) {
+      case NewsCategory.general:
+        return l10n.general;
+      case NewsCategory.business:
+        return l10n.business;
+      case NewsCategory.entertainment:
+        return l10n.entertainment;
+      case NewsCategory.health:
+        return l10n.health;
+      case NewsCategory.sports:
+        return l10n.sports;
+      case NewsCategory.technology:
+        return l10n.technology;
+      case NewsCategory.politics:
+        return l10n.politics;
+    }
   }
 
   @override
@@ -151,9 +168,9 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   Widget _buildNewsViewPager(BuildContext context, NewsLoaded state) {
     final articles = state.articles;
     if (articles.isEmpty) {
-      return const Center(
+      return  Center(
         child: Text(
-          "No articles found.",
+          AppLocalizations.of(context)!.noArticlesFound,
           style: TextStyle(color: Colors.white),
         ),
       );
@@ -165,6 +182,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
           onHorizontalDragEnd: (details) {
             final velocity = details.primaryVelocity;
             if (velocity != null && velocity > 300) {
+              Log.i("HOME: Navigating to SidePage via swipe");
               context.goNamed('sidepage');
             }
           },
@@ -178,6 +196,7 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                         ? articles.length + 1
                         : articles.length + 1,
                 onPageChanged: (index) {
+                  Log.i("HOME: User scrolled to page $index");
                   context.read<NewsBloc>().add(UpdateNewsIndex(index));
 
                   if (!state.hasReachedMax && index >= articles.length - 3) {
@@ -230,7 +249,10 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
                           color: Colors.white,
                           size: 22,
                         ),
-                        onPressed: () => context.pushNamed("contactUs"),
+                        onPressed: () {
+                          Log.i('HOME.DART: Navigating to Contact Us page');
+                          context.pushNamed("contactUs");
+                        },
                       ),
                     ],
                   ),
@@ -793,7 +815,10 @@ class _NewsCardState extends State<_NewsCard> {
                         color: Colors.white,
                         size: 28,
                       ),
-                      onPressed: () => _launchUrl(widget.article.url),
+                      onPressed: () {
+                        Log.i('HOME.DART: Opening article URL: ${widget.article.url}');
+                        _launchUrl(widget.article.url);
+                      },
                     ),
                     IconButton(
                       icon: const Icon(
@@ -808,9 +833,12 @@ class _NewsCardState extends State<_NewsCard> {
 
                     IconButton(
                       key: widget.chatbotKey,
-                      onPressed:
-                          () =>
-                              context.pushNamed('chat', extra: widget.article),
+                      onPressed: () {
+                        Log.i(
+                          'HOME: Navigating to Chatbot for article: ${widget.article.title}',
+                        );
+                        context.pushNamed('chat', extra: widget.article);
+                      },
                       icon: Image.asset(
                         'assets/logos/chatbot.gif',
                         width: 40,
@@ -894,7 +922,10 @@ class _TappableHeadlineState extends State<_TappableHeadline> {
 
 Future<void> _launchUrl(String url) async {
   if (!await launchUrl(Uri.parse(url))) {
+    Log.e('HOME.DART: Could not launch URL: $url');
     throw Exception('Could not launch $url');
+  } else {
+    Log.i('HOME.DART: Successfully launched URL: $url');
   }
 }
 

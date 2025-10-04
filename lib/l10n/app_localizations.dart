@@ -826,6 +826,18 @@ abstract class AppLocalizations {
   /// **'News description text will come here...'**
   String get newsDescriptionPlaceholder;
 
+  /// Message shown when no articles are available
+  ///
+  /// In en, this message translates to:
+  /// **'No articles found.'**
+  String get noArticlesFound;
+
+  /// General category
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get general;
+
   /// Technology category
   ///
   /// In en, this message translates to:
@@ -1557,6 +1569,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Results for'**
   String get resultsFor;
+
+  /// Message directing users to contact support
+  ///
+  /// In en, this message translates to:
+  /// **'For support, feedback, or questions about the app, reach out to our development team'**
+  String get supportContactMessage;
+
+  /// Information about response time for support
+  ///
+  /// In en, this message translates to:
+  /// **'We typically respond within 1-2 business days'**
+  String get responseTimeMessage;
+
+  /// Role title for co-developer
+  ///
+  /// In en, this message translates to:
+  /// **'Co-Developer'**
+  String get coDeveloper;
+
+  /// Title for shared news screen
+  ///
+  /// In en, this message translates to:
+  /// **'Shared News'**
+  String get sharedNews;
+
+  /// Error message for invalid server data
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid data received from server.'**
+  String get invalidDataReceived;
+
+  /// Error message when news article fails to load
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load news article.'**
+  String get failedToLoadNewsArticle;
+
+  /// Generic error message for loading article
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred while loading the article.'**
+  String get errorLoadingArticle;
+
+  /// Button text to retry an action
+  ///
+  /// In en, this message translates to:
+  /// **'Try Again'**
+  String get tryAgain;
+
+  /// Message when news article is not available
+  ///
+  /// In en, this message translates to:
+  /// **'News article not found'**
+  String get newsArticleNotFound;
+
+  /// Prefix for author name
+  ///
+  /// In en, this message translates to:
+  /// **'By'**
+  String get byAuthor;
+
+  /// Error message when article URL cannot be opened
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open the article.'**
+  String get couldNotOpenArticle;
+
+  /// Button text to read the complete article
+  ///
+  /// In en, this message translates to:
+  /// **'Read Full Article'**
+  String get readFullArticle;
+
+  /// Instruction text for report dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Please select the reason for reporting:'**
+  String get selectReasonForReporting;
+
+  /// Report option for bullying or harassment
+  ///
+  /// In en, this message translates to:
+  /// **'Bullying/Harassment'**
+  String get bullyingHarassment;
+
+  /// Confirmation message after submitting a report
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for your report. We will review this content.'**
+  String get thankYouForReport;
+
+  /// Initial state message encouraging user to start chatting
+  ///
+  /// In en, this message translates to:
+  /// **'Start a conversation about the article!'**
+  String get startConversationAboutArticle;
+
+  /// Subtitle for initial chat state
+  ///
+  /// In en, this message translates to:
+  /// **'Your chat history will appear here.'**
+  String get chatHistoryWillAppearHere;
+
+  /// Loading message when chat is initializing
+  ///
+  /// In en, this message translates to:
+  /// **'Initializing chat...'**
+  String get initializingChat;
+
+  /// Typing indicator text for AI responses
+  ///
+  /// In en, this message translates to:
+  /// **'Thinking...'**
+  String get thinking;
+
+  /// Input field hint text for chat
+  ///
+  /// In en, this message translates to:
+  /// **'Ask me anything about this article...'**
+  String get askAnythingAboutArticle;
+
+  /// Validation message for custom report reason
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a reason (max 50 characters)'**
+  String get pleaseEnterReason;
+
+  /// Error message for exceeding character limit
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum allowed is 50 characters'**
+  String get maxAllowed50Chars;
+
+  /// Hint text for custom report reason field
+  ///
+  /// In en, this message translates to:
+  /// **'Please specify (max 50 characters)'**
+  String get pleaseSpecifyMax50;
+
+  /// Error message when AI service fails to respond
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to get response'**
+  String get failedToGetResponse;
 }
 
 class _AppLocalizationsDelegate

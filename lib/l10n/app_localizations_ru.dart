@@ -371,6 +371,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get newsDescriptionPlaceholder => 'Описание новости недоступно';
 
   @override
+  String get noArticlesFound => 'Статьи не найдены.';
+
+  @override
+  String get general => 'Общий';
+
+  @override
   String get technology => 'Технологии';
 
   @override
@@ -759,4 +765,83 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get resultsFor => 'Результаты для';
+
+  @override
+  String get supportContactMessage =>
+      'Для поддержки, обратной связи или вопросов о приложении, обратитесь к нашей команде разработчиков';
+
+  @override
+  String get responseTimeMessage =>
+      'Мы обычно отвечаем в течение 1-2 рабочих дней';
+
+  @override
+  String get coDeveloper => 'Со-разработчик';
+
+  @override
+  String get sharedNews => 'Общие Новости';
+
+  @override
+  String get invalidDataReceived =>
+      'Получены недействительные данные от сервера.';
+
+  @override
+  String get failedToLoadNewsArticle =>
+      'Не удалось загрузить новостную статью.';
+
+  @override
+  String get errorLoadingArticle => 'Произошла ошибка при загрузке статьи.';
+
+  @override
+  String get tryAgain => 'Попробовать снова';
+
+  @override
+  String get newsArticleNotFound => 'Новостная статья не найдена';
+
+  @override
+  String get byAuthor => 'От';
+
+  @override
+  String get couldNotOpenArticle => 'Не удалось открыть статью.';
+
+  @override
+  String get readFullArticle => 'Прочитать Полную Статью';
+
+  @override
+  String get selectReasonForReporting => 'Пожалуйста, выберите причину жалобы:';
+
+  @override
+  String get bullyingHarassment => 'Буллинг/Харассмент';
+
+  @override
+  String get thankYouForReport =>
+      'Спасибо за вашу жалобу. Мы рассмотрим этот контент.';
+
+  @override
+  String get startConversationAboutArticle => 'Начните разговор о статье!';
+
+  @override
+  String get chatHistoryWillAppearHere => 'Ваша история чата появится здесь.';
+
+  @override
+  String get initializingChat => 'Инициализация чата...';
+
+  @override
+  String get thinking => 'Думаю...';
+
+  @override
+  String get askAnythingAboutArticle =>
+      'Спросите меня о чем угодно в этой статье...';
+
+  @override
+  String get pleaseEnterReason =>
+      'Пожалуйста, введите причину (макс. 50 символов)';
+
+  @override
+  String get maxAllowed50Chars => 'Максимум разрешено: 50 символов';
+
+  @override
+  String get pleaseSpecifyMax50 => 'Пожалуйста, укажите (макс. 50 символов)';
+
+  @override
+  String get failedToGetResponse => 'Не удалось получить ответ';
 }
