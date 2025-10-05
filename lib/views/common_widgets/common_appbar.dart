@@ -2,9 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 
 import '../../controller/cubit/theme/theme_cubit.dart';
 import '../../controller/cubit/theme/theme_state.dart';
+
+// Created a global logger instance
+final Logger _logger = Logger();
 
 class ParticlesHeader extends StatelessWidget {
   final String title;
@@ -24,64 +28,85 @@ class ParticlesHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _logger.i('Build method started - PARTICLES_HEADER');
+
     return BlocBuilder<ThemeCubit, ThemeState>(
       builder: (context, themeState) {
+        _logger.d('BlocBuilder rebuilding with theme state - PARTICLES_HEADER');
+
         final theme = Theme.of(context);
         final isDarkMode = theme.brightness == Brightness.dark;
         final currentTheme = themeState.currentTheme;
-        return Container(
-          height: height,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                isDarkMode
-                    ? themeColor.withAlpha(100)
-                    : currentTheme.primaryColor.withAlpha(35),
-                isDarkMode
-                    ? themeColor.withAlpha(25)
-                    : currentTheme.primaryColor.withAlpha(65),
+
+        _logger.d(
+          'Theme mode: ${isDarkMode ? "Dark" : "Light"} - PARTICLES_HEADER',
+        );
+
+        return GestureDetector(
+          onTap: () {
+            _logger.i('Particles header tapped - PARTICLES_HEADER');
+          },
+          child: Container(
+            height: height,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  isDarkMode
+                      ? themeColor.withAlpha(100)
+                      : currentTheme.primaryColor.withAlpha(35),
+                  isDarkMode
+                      ? themeColor.withAlpha(25)
+                      : currentTheme.primaryColor.withAlpha(65),
+                ],
+              ),
+            ),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Positioned.fill(
+                  child: AnimatedBuilder(
+                    animation: particleAnimation,
+                    builder: (context, child) {
+                      return CustomPaint(
+                        painter: ParticlesPainter(
+                          isDarkMode ? themeColor : themeColor,
+                          particleAnimation.value,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 35, 0, 0),
+                    child: GestureDetector(
+                      onTap: () {
+                        _logger.i(
+                          'Title text tapped: $title - PARTICLES_HEADER',
+                        );
+                      },
+                      child:
+                          child ??
+                          Text(
+                            title,
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              letterSpacing: 1.2,
+                              color:
+                              Theme.of(context).brightness == Brightness.light
+                                      ? Colors.black87
+                                  : const Color.fromARGB(255, 223, 223, 223),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 23,
+                            ),
+                          ),
+                    ),
+                  ),
+                ),
               ],
             ),
-          ),
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              Positioned.fill(
-                child: AnimatedBuilder(
-                  animation: particleAnimation,
-                  builder: (context, child) {
-                    return CustomPaint(
-                      painter: ParticlesPainter(
-                        isDarkMode ? themeColor : themeColor,
-                        particleAnimation.value,
-                      ),
-                    );
-                  },
-                ),
-              ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 35, 0, 0),
-                  child:
-                      child ??
-                      Text(
-                        title,
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          letterSpacing: 1.2,
-                          color:
-                              Theme.of(context).brightness == Brightness.light
-                                  ? Colors.black87
-                                  : const Color.fromARGB(255, 223, 223, 223),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 23,
-                        ),
-                      ),
-                ),
-              ),
-            ],
           ),
         );
       },
@@ -101,6 +126,8 @@ class AnimatedPageTransition extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _logger.i('Build method started - ANIMATED_PAGE_TRANSITION');
+
     return FadeTransition(
       opacity: animation,
       child: SlideTransition(
@@ -122,6 +149,10 @@ class ParticlesPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    _logger.d(
+      'Painting particles with animation value: $animationValue - PARTICLES_PAINTER',
+    );
+
     final paint =
         Paint()
           ..color = Colors.white.withAlpha(50)
@@ -148,8 +179,15 @@ class ParticlesPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant ParticlesPainter oldDelegate) {
-    return oldDelegate.animationValue != animationValue ||
+    final shouldRepaint =
+        oldDelegate.animationValue != animationValue ||
         oldDelegate.themeColor != themeColor;
+
+    if (shouldRepaint) {
+      _logger.d('Particles painter needs repaint - PARTICLES_PAINTER');
+    }
+
+    return shouldRepaint;
   }
 }
 
@@ -160,6 +198,8 @@ class AppScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _logger.i('Build method started - APP_SCAFFOLD');
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
