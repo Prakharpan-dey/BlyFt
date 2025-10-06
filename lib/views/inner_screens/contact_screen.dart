@@ -6,6 +6,7 @@ import 'dart:ui';
 import 'package:blyft/controller/cubit/theme/theme_cubit.dart';
 import 'package:blyft/models/theme_model.dart';
 import 'package:blyft/l10n/app_localizations.dart';
+import 'package:blyft/utils/logger.dart';
 
 class ContactUsScreen extends StatefulWidget {
   const ContactUsScreen({super.key});
@@ -22,6 +23,7 @@ class _ContactUsScreenState extends State<ContactUsScreen>
   @override
   void initState() {
     super.initState();
+    Log.i('CONTACT_SCREEN: Screen started');
     _fadeController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 600),
@@ -79,6 +81,7 @@ class _ContactUsScreenState extends State<ContactUsScreen>
   }
 
   void _copyToClipboard(String text, String type) {
+    Log.i('CONTACT_SCREEN: Copied $type to clipboard: $text');
     Clipboard.setData(ClipboardData(text: text));
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -139,7 +142,10 @@ class _ContactUsScreenState extends State<ContactUsScreen>
         child: Row(
           children: [
             IconButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                Log.i('CONTACT_SCREEN: Navigating back');
+                Navigator.pop(context);
+              },
               icon: Icon(
                 Icons.arrow_back_ios_new,
                 color: Theme.of(context).colorScheme.onSurface,
@@ -281,7 +287,10 @@ class _ContactUsScreenState extends State<ContactUsScreen>
             icon: Icons.email_outlined,
             label: AppLocalizations.of(context)!.email,
             value: email,
-            onTap: () => _copyToClipboard(email, AppLocalizations.of(context)!.email),
+            onTap: () {
+              Log.i('CONTACT_SCREEN: Copying email for $name: $email');
+              _copyToClipboard(email, AppLocalizations.of(context)!.email);
+            },
             theme: theme,
           ),
           const Gap(8),
@@ -289,7 +298,10 @@ class _ContactUsScreenState extends State<ContactUsScreen>
             icon: Icons.phone_outlined,
             label: AppLocalizations.of(context)!.phone,
             value: phone,
-            onTap: () => _copyToClipboard(phone, AppLocalizations.of(context)!.phoneNumber),
+            onTap: () {
+              Log.i('CONTACT_SCREEN: Copying phone for $name: $phone');
+              _copyToClipboard(phone, AppLocalizations.of(context)!.phoneNumber);
+            },
             theme: theme,
           ),
         ],
