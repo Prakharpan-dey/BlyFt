@@ -1,19 +1,214 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:blyft/controller/cubit/user_profile/user_profile_cubit.dart';
 import 'package:blyft/controller/cubit/user_profile/user_profile_state.dart';
 import 'package:blyft/controller/services/auth_service.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 import 'package:blyft/views/common_widgets/common_appbar.dart';
 import 'package:blyft/views/inner_screens/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../controller/cubit/theme/theme_cubit.dart';
 import '../../controller/cubit/theme/theme_state.dart';
+import '../../controller/cubit/locale/locale_cubit.dart';
+import '../../controller/cubit/locale/locale_state.dart';
 import '../../controller/services/notification_service.dart';
 import '../../models/theme_model.dart';
+
+class CircularTimePicker extends StatefulWidget {
+  final String initialTime;
+  final Color themeColor;
+  final Function(String) onTimeChanged;
+
+  const CircularTimePicker({
+    super.key,
+    required this.initialTime,
+    required this.themeColor,
+    required this.onTimeChanged,
+  });
+
+  @override
+  State<CircularTimePicker> createState() => _CircularTimePickerState();
+}
+
+class _CircularTimePickerState extends State<CircularTimePicker> {
+  late int _selectedHour;
+  late int _selectedMinute;
+  bool _isDragging = false;
+
+  @override
+  void initState() {
+    super.initState();
+    final timeParts = widget.initialTime.split(':');
+    _selectedHour = int.parse(timeParts[0]);
+    _selectedMinute = int.parse(timeParts[1]);
+    _updateAngleFromTime();
+  }
+
+  void _updateAngleFromTime() {
+    // Convert time to angle (24-hour format, 15 degrees per hour, 0.25 degrees per minute)
+  }
+
+  void _updateTimeFromAngle(double angle) {
+    // Convert angle back to time
+    double degrees = angle * 180 / pi;
+    double totalMinutes = degrees / 0.25; // 0.25 degrees per minute (360/1440)
+    int hour = (totalMinutes / 60).floor() % 24;
+    int minute = (totalMinutes % 60).round();
+
+    // Round minute to nearest 5 minutes
+    minute = ((minute / 5).round() * 5) % 60;
+
+    if (hour != _selectedHour || minute != _selectedMinute) {
+      setState(() {
+        _selectedHour = hour;
+        _selectedMinute = minute;
+      });
+      final timeString = '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
+      widget.onTimeChanged(timeString);
+      HapticFeedback.lightImpact(); // Haptic feedback
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return GestureDetector(
+      onPanStart: (details) {
+        setState(() => _isDragging = true);
+        _handleDrag(details.localPosition, Size(200, 200));
+      },
+      onPanUpdate: (details) {
+        _handleDrag(details.localPosition, Size(200, 200));
+      },
+      onPanEnd: (details) {
+        setState(() => _isDragging = false);
+      },
+      child: Container(
+        width: 200,
+        height: 200,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: theme.cardColor,
+          boxShadow: [
+            BoxShadow(
+              color: widget.themeColor.withAlpha(50),
+              blurRadius: 10,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: CustomPaint(
+          painter: _ClockPainter(
+            selectedHour: _selectedHour,
+            selectedMinute: _selectedMinute,
+            themeColor: widget.themeColor,
+            isDragging: _isDragging,
+          ),
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  '${_selectedHour.toString().padLeft(2, '0')}:${_selectedMinute.toString().padLeft(2, '0')}',
+                  style: theme.textTheme.headlineMedium?.copyWith(
+                    color: _isDragging ? widget.themeColor : theme.colorScheme.onSurface,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  _selectedHour < 12 ? 'AM' : 'PM',
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    color: theme.colorScheme.onSurface.withAlpha(150),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _handleDrag(Offset position, Size size) {
+    final center = Offset(size.width / 2, size.height / 2);
+    final angle = (position - center).direction;
+    _updateTimeFromAngle(angle);
+  }
+}
+
+class _ClockPainter extends CustomPainter {
+  final int selectedHour;
+  final int selectedMinute;
+  final Color themeColor;
+  final bool isDragging;
+
+  _ClockPainter({
+    required this.selectedHour,
+    required this.selectedMinute,
+    required this.themeColor,
+    required this.isDragging,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = size.width / 2 - 20;
+
+    final paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2;
+
+    // Draw hour markers
+    for (int i = 0; i < 24; i++) {
+      final angle = (i * 15) * (pi / 180); // 15 degrees per hour
+      final markerLength = i % 6 == 0 ? 15.0 : 8.0; // Longer markers every 6 hours
+      final startPoint = center + Offset(cos(angle) * (radius - markerLength), sin(angle) * (radius - markerLength));
+      final endPoint = center + Offset(cos(angle) * radius, sin(angle) * radius);
+
+      paint.color = i == selectedHour ? themeColor : Colors.grey.withAlpha(100);
+      paint.strokeWidth = i == selectedHour ? 3 : 2;
+      canvas.drawLine(startPoint, endPoint, paint);
+    }
+
+    // Draw minute markers (every 5 minutes)
+    paint.strokeWidth = 1;
+    for (int i = 0; i < 60; i += 5) {
+      final angle = i * 6 * (pi / 180); // 6 degrees per 5 minutes
+      final startPoint = center + Offset(cos(angle) * (radius - 5), sin(angle) * (radius - 5));
+      final endPoint = center + Offset(cos(angle) * radius, sin(angle) * radius);
+
+      final isSelectedMinute = i == selectedMinute;
+      paint.color = isSelectedMinute ? themeColor : Colors.grey.withAlpha(50);
+      canvas.drawLine(startPoint, endPoint, paint);
+    }
+
+    // Draw selection indicator
+    final selectedAngle = (selectedHour % 24) * 15 * (pi / 180) + selectedMinute * 0.25 * (pi / 180);
+    final indicatorPaint = Paint()
+      ..style = PaintingStyle.fill
+      ..color = themeColor;
+
+    final indicatorPosition = center + Offset(
+      cos(selectedAngle) * (radius - 25),
+      sin(selectedAngle) * (radius - 25),
+    );
+
+    canvas.drawCircle(indicatorPosition, isDragging ? 8 : 6, indicatorPaint);
+  }
+
+  @override
+  bool shouldRepaint(_ClockPainter oldDelegate) {
+    return oldDelegate.selectedHour != selectedHour ||
+           oldDelegate.selectedMinute != selectedMinute ||
+           oldDelegate.isDragging != isDragging;
+  }
+}
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -38,6 +233,10 @@ class _SettingsScreenState extends State<SettingsScreen>
     super.initState();
 
     context.read<UserProfileCubit>().loadUserProfile();
+
+    // Load current language from LocaleCubit
+    final localeCubit = context.read<LocaleCubit>();
+    _selectedLanguage = localeCubit.getCurrentLanguageName();
 
     _animationController = AnimationController(
       vsync: this,
@@ -109,7 +308,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('Select Language', style: theme.textTheme.titleLarge),
+                    Text(AppLocalizations.of(context)!.selectLanguage, style: theme.textTheme.titleLarge),
                     const SizedBox(height: 15),
                     Container(
                       constraints: BoxConstraints(
@@ -180,6 +379,8 @@ class _SettingsScreenState extends State<SettingsScreen>
                     : null,
             onTap: () {
               setState(() => _selectedLanguage = language);
+              // Update the app's locale using LocaleCubit
+              context.read<LocaleCubit>().changeLocale(language);
               Navigator.pop(context);
             },
           ),
@@ -219,7 +420,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'Select Theme Color',
+                          AppLocalizations.of(context)!.selectTheme,
                           style: theme.textTheme.titleLarge,
                         ),
                         const SizedBox(height: 20),
@@ -335,9 +536,9 @@ class _SettingsScreenState extends State<SettingsScreen>
                             size: 60,
                           ),
                           const SizedBox(height: 16),
-                          const Text(
-                            'Delete Account',
-                            style: TextStyle(
+                          Text(
+                            AppLocalizations.of(context)!.deleteAccount,
+                            style: const TextStyle(
                               color: Color.fromARGB(255, 198, 48, 37),
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -345,7 +546,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            'This action cannot be undone. All your data will be permanently deleted.',
+                            AppLocalizations.of(context)!.deleteAccountWarning,
                             style: theme.textTheme.bodyMedium,
                             textAlign: TextAlign.center,
                           ),
@@ -385,7 +586,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
-                                child: const Text('Cancel'),
+                                child: Text(AppLocalizations.of(context)!.cancel),
                               ),
                               ElevatedButton(
                                 onPressed:
@@ -472,7 +673,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                                                 ),
                                           ),
                                         )
-                                        : const Text('Delete Account'),
+                                        : Text(AppLocalizations.of(context)!.deleteAccount),
                               ),
                             ],
                           ),
@@ -504,10 +705,6 @@ class _SettingsScreenState extends State<SettingsScreen>
     final theme = Theme.of(context);
     final themeCubit = context.read<ThemeCubit>();
 
-    final timeParts = _reminderTime.split(':');
-    final currentHour = int.parse(timeParts[0]);
-    final currentMinute = int.parse(timeParts[1]);
-
     showDialog(
       context: context,
       builder:
@@ -533,150 +730,18 @@ class _SettingsScreenState extends State<SettingsScreen>
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Set Reminder Time',
+                      AppLocalizations.of(context)!.setReminderTime,
                       style: theme.textTheme.titleLarge,
                     ),
                     const SizedBox(height: 20),
-                    SizedBox(
-                      height: 200,
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Text('Hour', style: theme.textTheme.titleSmall),
-                                const SizedBox(height: 10),
-                                Expanded(
-                                  child: ListWheelScrollView.useDelegate(
-                                    itemExtent: 40,
-                                    diameterRatio: 1.5,
-                                    perspective: 0.003,
-                                    onSelectedItemChanged: (index) {
-                                      final hour = index.toString().padLeft(
-                                        2,
-                                        '0',
-                                      );
-                                      final minute =
-                                          _reminderTime.split(':')[1];
-                                      setState(() {
-                                        _reminderTime = '$hour:$minute';
-                                      });
-                                    },
-                                    controller: FixedExtentScrollController(
-                                      initialItem: currentHour,
-                                    ),
-                                    childDelegate:
-                                        ListWheelChildBuilderDelegate(
-                                          builder: (context, index) {
-                                            if (index < 0 || index > 23)
-                                              return null;
-                                            return Container(
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                index.toString().padLeft(
-                                                  2,
-                                                  '0',
-                                                ),
-                                                style: theme
-                                                    .textTheme
-                                                    .titleMedium
-                                                    ?.copyWith(
-                                                      color:
-                                                          index == currentHour
-                                                              ? themeCubit
-                                                                  .currentTheme
-                                                                  .primaryColor
-                                                              : theme
-                                                                  .colorScheme
-                                                                  .onSurface,
-                                                      fontWeight:
-                                                          index == currentHour
-                                                              ? FontWeight.bold
-                                                              : FontWeight
-                                                                  .normal,
-                                                    ),
-                                              ),
-                                            );
-                                          },
-                                          childCount: 24,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(width: 20),
-                          // Minute picker
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Minute',
-                                  style: theme.textTheme.titleSmall,
-                                ),
-                                const SizedBox(height: 10),
-                                Expanded(
-                                  child: ListWheelScrollView.useDelegate(
-                                    itemExtent: 40,
-                                    diameterRatio: 1.5,
-                                    perspective: 0.003,
-                                    onSelectedItemChanged: (index) {
-                                      final minute = (index * 5)
-                                          .toString()
-                                          .padLeft(2, '0');
-                                      final hour = _reminderTime.split(':')[0];
-                                      setState(() {
-                                        _reminderTime = '$hour:$minute';
-                                      });
-                                    },
-                                    controller: FixedExtentScrollController(
-                                      initialItem: (currentMinute / 5).round(),
-                                    ),
-                                    childDelegate:
-                                        ListWheelChildBuilderDelegate(
-                                          builder: (context, index) {
-                                            if (index < 0 || index > 11)
-                                              return null;
-                                            final minute = index * 5;
-                                            return Container(
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                minute.toString().padLeft(
-                                                  2,
-                                                  '0',
-                                                ),
-                                                style: theme
-                                                    .textTheme
-                                                    .titleMedium
-                                                    ?.copyWith(
-                                                      color:
-                                                          minute ==
-                                                                  currentMinute
-                                                              ? themeCubit
-                                                                  .currentTheme
-                                                                  .primaryColor
-                                                              : theme
-                                                                  .colorScheme
-                                                                  .onSurface,
-                                                      fontWeight:
-                                                          minute ==
-                                                                  currentMinute
-                                                              ? FontWeight.bold
-                                                              : FontWeight
-                                                                  .normal,
-                                                    ),
-                                              ),
-                                            );
-                                          },
-                                          childCount: 12,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                    CircularTimePicker(
+                      initialTime: _reminderTime,
+                      themeColor: themeCubit.currentTheme.primaryColor,
+                      onTimeChanged: (time) {
+                        setState(() {
+                          _reminderTime = time;
+                        });
+                      },
                     ),
                     const SizedBox(height: 20),
                     Row(
@@ -695,7 +760,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          child: const Text('Cancel'),
+                          child: Text(AppLocalizations.of(context)!.cancel),
                         ),
                         ElevatedButton(
                           onPressed: () async {
@@ -727,7 +792,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          child: const Text('Save'),
+                          child: Text(AppLocalizations.of(context)!.save),
                         ),
                       ],
                     ),
@@ -746,9 +811,9 @@ class _SettingsScreenState extends State<SettingsScreen>
       if (!hasPermission) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
+            SnackBar(
               content: Text(
-                'Notification permission is required for reminders',
+                AppLocalizations.of(context)!.notificationPermissionRequired,
               ),
               backgroundColor: Colors.red,
             ),
@@ -766,8 +831,8 @@ class _SettingsScreenState extends State<SettingsScreen>
     if (mounted) {
       final message =
           enabled
-              ? 'Daily reminders enabled for $_reminderTime'
-              : 'Daily reminders disabled';
+              ? AppLocalizations.of(context)!.dailyRemindersEnabled(_reminderTime)
+              : AppLocalizations.of(context)!.dailyRemindersDisabled;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(message),
@@ -1005,7 +1070,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                                     8,
                                   ),
                                   child: Text(
-                                    'Settings',
+                                    AppLocalizations.of(context)!.settings,
                                     style: theme.textTheme.headlineMedium
                                         ?.copyWith(
                                           fontWeight: FontWeight.bold,
@@ -1015,14 +1080,14 @@ class _SettingsScreenState extends State<SettingsScreen>
                                 ),
                               ),
                               _buildSectionHeader(
-                                'Profile',
+                                AppLocalizations.of(context)!.profile,
                                 themeState.currentTheme.primaryColor,
                               ),
                               _buildAnimatedCard(
                                 child: _buildListTile(
                                   icon: Icons.person,
-                                  title: 'Edit Profile',
-                                  subtitle: 'Update your personal information',
+                                  title: AppLocalizations.of(context)!.editProfile,
+                                  subtitle: AppLocalizations.of(context)!.updatePersonalInfo,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   onTap: () {
@@ -1037,13 +1102,13 @@ class _SettingsScreenState extends State<SettingsScreen>
                                 ),
                               ),
                               _buildSectionHeader(
-                                'Appearance',
+                                AppLocalizations.of(context)!.appearance,
                                 themeState.currentTheme.primaryColor,
                               ),
                               _buildAnimatedCard(
                                 child: _buildSwitchTile(
                                   icon: Icons.dark_mode,
-                                  title: 'Dark Mode',
+                                  title: AppLocalizations.of(context)!.darkMode,
                                   value: themeState.currentTheme.isDarkMode,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
@@ -1056,8 +1121,8 @@ class _SettingsScreenState extends State<SettingsScreen>
                               _buildAnimatedCard(
                                 child: _buildListTile(
                                   icon: Icons.color_lens,
-                                  title: 'App Theme',
-                                  subtitle: 'Change app accent color',
+                                  title: AppLocalizations.of(context)!.appTheme,
+                                  subtitle: AppLocalizations.of(context)!.changeAppAccentColor,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   trailingWidget: Container(
@@ -1083,13 +1148,13 @@ class _SettingsScreenState extends State<SettingsScreen>
                                 ),
                               ),
                               _buildSectionHeader(
-                                'Preferences',
+                                AppLocalizations.of(context)!.preferences,
                                 themeState.currentTheme.primaryColor,
                               ),
                               _buildAnimatedCard(
                                 child: _buildSwitchTile(
                                   icon: Icons.notifications_active,
-                                  title: 'Push Notifications',
+                                  title: AppLocalizations.of(context)!.pushNotifications,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   value: _notificationsEnabled,
@@ -1102,7 +1167,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                               _buildAnimatedCard(
                                 child: _buildSwitchTile(
                                   icon: Icons.bookmark_add_outlined,
-                                  title: 'Daily Bookmark Reminder',
+                                  title: AppLocalizations.of(context)!.dailyBookmarkReminder,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   value: _reminderEnabled,
@@ -1112,7 +1177,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                               _buildAnimatedCard(
                                 child: _buildListTile(
                                   icon: Icons.schedule,
-                                  title: 'Reminder Time',
+                                  title: AppLocalizations.of(context)!.reminderTime,
                                   subtitle: _reminderTime,
                                   themeColor:
                                       _reminderEnabled
@@ -1136,51 +1201,66 @@ class _SettingsScreenState extends State<SettingsScreen>
                                 ),
                               ),
                               _buildAnimatedCard(
-                                child: _buildListTile(
-                                  icon: Icons.language,
-                                  title: 'Language',
-                                  subtitle: _selectedLanguage,
-                                  themeColor:
-                                      themeState.currentTheme.primaryColor,
-                                  onTap: _showLanguageDialog,
+                                child: BlocBuilder<LocaleCubit, LocaleState>(
+                                  builder: (context, localeState) {
+                                    // Update selected language when locale changes
+                                    if (localeState is LocaleLoaded) {
+                                      final currentLanguage = context.read<LocaleCubit>().getCurrentLanguageName();
+                                      if (_selectedLanguage != currentLanguage) {
+                                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                                          setState(() {
+                                            _selectedLanguage = currentLanguage;
+                                          });
+                                        });
+                                      }
+                                    }
+                                    return _buildListTile(
+                                      icon: Icons.language,
+                                      title: AppLocalizations.of(context)!.language,
+                                      subtitle: _selectedLanguage,
+                                      themeColor:
+                                          themeState.currentTheme.primaryColor,
+                                      onTap: _showLanguageDialog,
+                                    );
+                                  },
                                 ),
                               ),
                               _buildSectionHeader(
-                                'App',
+                                AppLocalizations.of(context)!.app,
                                 themeState.currentTheme.primaryColor,
                               ),
                               _buildAnimatedCard(
                                 child: _buildListTile(
                                   icon: Icons.share,
-                                  title: 'Share App',
-                                  subtitle: 'Tell your friends about us',
+                                  title: AppLocalizations.of(context)!.shareApp,
+                                  subtitle: AppLocalizations.of(context)!.tellYourFriends,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   onTap:
                                       () => Share.share(
-                                        'Hey! I\'m using this amazing app. You can try it too! 📲\n\nDownload here: https://play.google.com/store/apps/details?id=com.placeholder',
+                                        AppLocalizations.of(context)!.shareAppMessage,
                                       ),
                                 ),
                               ),
                               _buildAnimatedCard(
                                 child: _buildListTile(
                                   icon: Icons.star_rate,
-                                  title: 'Rate App',
-                                  subtitle: 'Leave feedback on the store',
+                                  title: AppLocalizations.of(context)!.rateApp,
+                                  subtitle: AppLocalizations.of(context)!.leaveFeedback,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   onTap: () {},
                                 ),
                               ),
                               _buildSectionHeader(
-                                'Contact',
+                                AppLocalizations.of(context)!.contact,
                                 themeState.currentTheme.primaryColor,
                               ),
                               _buildAnimatedCard(
                                 child: _buildListTile(
                                   icon: Icons.contact_mail,
-                                  title: 'Contact Us',
-                                  subtitle: 'Get in touch with support',
+                                  title: AppLocalizations.of(context)!.contactUs,
+                                  subtitle: AppLocalizations.of(context)!.getInTouch,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   onTap: () => context.push('/contactUs'),
@@ -1189,8 +1269,8 @@ class _SettingsScreenState extends State<SettingsScreen>
                               _buildAnimatedCard(
                                 child: _buildListTile(
                                   icon: Icons.info,
-                                  title: 'About Us',
-                                  subtitle: 'Learn more about us',
+                                  title: AppLocalizations.of(context)!.aboutUs,
+                                  subtitle: AppLocalizations.of(context)!.learnMoreAboutUs,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   onTap: () {
@@ -1199,14 +1279,14 @@ class _SettingsScreenState extends State<SettingsScreen>
                                 ),
                               ),
                               _buildSectionHeader(
-                                'Account',
+                                AppLocalizations.of(context)!.account,
                                 themeState.currentTheme.primaryColor,
                               ),
                               _buildAnimatedCard(
                                 child: _buildListTile(
                                   icon: Icons.logout,
-                                  title: 'Log Out',
-                                  subtitle: 'See you again soon',
+                                  title: AppLocalizations.of(context)!.logOut,
+                                  subtitle: AppLocalizations.of(context)!.seeYouAgainSoon,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   titleColor:
@@ -1228,9 +1308,9 @@ class _SettingsScreenState extends State<SettingsScreen>
                                 child: _buildListTile(
                                   icon: Icons.delete_forever,
                                   iconColor: Colors.red,
-                                  title: 'Delete Account',
+                                  title: AppLocalizations.of(context)!.deleteAccount,
                                   titleColor: Colors.red,
-                                  subtitle: 'Permanently erase your data',
+                                  subtitle: AppLocalizations.of(context)!.permanentlyEraseData,
                                   themeColor: Colors.red,
                                   onTap: _confirmDeleteProfile,
                                 ),
@@ -1372,3 +1452,4 @@ class _SettingsScreenState extends State<SettingsScreen>
     );
   }
 }
+

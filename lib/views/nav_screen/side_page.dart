@@ -3,11 +3,13 @@ import 'package:blyft/controller/cubit/theme/theme_state.dart';
 import 'package:blyft/controller/services/news_services.dart';
 import 'package:blyft/models/article_model.dart';
 import 'package:blyft/models/news_category.dart';
+import 'package:blyft/utils/logger.dart';
 import 'package:blyft/views/common_widgets/common_appbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 
 import '../../controller/cubit/user_profile/user_profile_cubit.dart';
 import '../../controller/cubit/user_profile/user_profile_state.dart';
@@ -30,6 +32,7 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    Log.i('SIDE_PAGE: Screen started');
     _topNewsFuture = _newsService.fetchGeneralNews(page: 1, pageSize: 3);
 
     context.read<UserProfileCubit>().loadUserProfile();
@@ -83,10 +86,11 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
     final query = _searchController.text.trim();
     if (query.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a search query')),
+        SnackBar(content: Text(AppLocalizations.of(context)!.pleaseEnterSearchQuery)),
       );
       return;
     }
+    Log.i('SIDE_PAGE: Navigating to SearchResults with query: $query');
     context.pushNamed('searchResults', queryParameters: {'query': query});
     _searchController.clear();
   }
@@ -103,6 +107,7 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
         return GestureDetector(
           onHorizontalDragEnd: (details) {
             if (details.primaryVelocity! < -5) {
+              Log.i('SIDE_PAGE: Navigating to Home via swipe gesture');
               context.goNamed(
                 'home',
                 pathParameters: {
@@ -150,6 +155,7 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
                                       ),
                                       child: InkWell(
                                         onTap: () {
+                                          Log.i('SIDE_PAGE: Navigating to Profile');
                                           context.push("/sidepage/profile");
                                         },
                                         child:
@@ -170,6 +176,7 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
                                 const Spacer(),
                                 TextButton.icon(
                                   onPressed: () {
+                                    Log.i('SIDE_PAGE: MY FEED button tapped - Navigating to Home');
                                     context.goNamed(
                                       'home',
                                       pathParameters: {
@@ -180,12 +187,12 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
                                     );
                                   },
                                   icon: Text(
-                                    'MY FEED',
-                                    style: theme.textTheme.labelLarge?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: theme.colorScheme.onSurface,
+                                      AppLocalizations.of(context)!.myFeed.toUpperCase(),
+                                      style: theme.textTheme.labelLarge?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: theme.colorScheme.onSurface,
+                                      ),
                                     ),
-                                  ),
                                   label: Icon(
                                     Icons.arrow_forward,
                                     size: 18,
@@ -200,7 +207,7 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
                               style: theme.textTheme.bodyLarge,
                               decoration: InputDecoration(
                                 isDense: true,
-                                hintText: 'Search news topics...',
+                                hintText: AppLocalizations.of(context)!.searchNewsTopics,
                                 hintStyle: theme.textTheme.bodyLarge?.copyWith(
                                   color: theme.colorScheme.onSurface.withAlpha(
                                     (0.6 * 255).toInt(),
@@ -223,7 +230,10 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
                                     .surfaceContainerHighest
                                     .withAlpha((0.7 * 255).toInt()),
                               ),
-                              onSubmitted: (_) => _handleSearch(),
+                              onSubmitted: (_) {
+                                Log.i('SIDE_PAGE: Search submitted via keyboard');
+                                _handleSearch();
+                              },
                             ),
                           ],
                         ),
@@ -265,28 +275,28 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
                                   shrinkWrap: true,
                                   children: [
                                     _buildMenuButton(
-                                      'My Feed',
+                                      AppLocalizations.of(context)!.myFeed,
                                       Icons.home,
                                       context,
                                       NewsCategory.general,
                                       currentTheme.primaryColor,
                                     ),
                                     _buildMenuButton(
-                                      'Top Stories',
+                                      AppLocalizations.of(context)!.topStories,
                                       Icons.trending_up,
                                       context,
                                       NewsCategory.general,
                                       currentTheme.primaryColor,
                                     ),
                                     _buildMenuButton(
-                                      'Bookmarks',
+                                      AppLocalizations.of(context)!.bookmarks,
                                       Icons.bookmark,
                                       context,
                                       null,
                                       currentTheme.primaryColor,
                                     ),
                                     _buildMenuButton(
-                                      'Settings',
+                                      AppLocalizations.of(context)!.settings,
                                       Icons.settings,
                                       context,
                                       null,
@@ -297,7 +307,7 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
                               ),
                               const SizedBox(height: 24),
                               Text(
-                                'TOP NEWS',
+                                AppLocalizations.of(context)!.topNews.toUpperCase(),
                                 style: theme.textTheme.titleMedium?.copyWith(
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 1.1,
@@ -323,7 +333,7 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
                                         vertical: 16,
                                       ),
                                       child: Text(
-                                        'Failed to load top news',
+                                        AppLocalizations.of(context)!.failedToLoadTopNews,
                                         style: TextStyle(
                                           fontSize: textScaler.scale(14),
                                           color: theme.colorScheme.error,
@@ -346,7 +356,7 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
                               ),
                               const SizedBox(height: 24),
                               Text(
-                                'TOPICS',
+                                AppLocalizations.of(context)!.topics.toUpperCase(),
                                 style: theme.textTheme.titleMedium?.copyWith(
                                   letterSpacing: 1.1,
                                   fontWeight: FontWeight.bold,
@@ -363,37 +373,37 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
                                 padding: EdgeInsets.zero,
                                 children: [
                                   _buildImageContainer(
-                                    'Technology',
+                                    AppLocalizations.of(context)!.technology,
                                     'https://i.pinimg.com/736x/6b/8e/97/6b8e974572105a1e4096c1a8e2b6a7bc.jpg',
                                     context,
                                     NewsCategory.technology,
                                   ),
                                   _buildImageContainer(
-                                    'Politics',
+                                    AppLocalizations.of(context)!.politics,
                                     'https://i.pinimg.com/736x/f2/c0/9c/f2c09c8daf5c64c92ea5738507f4ed26.jpg',
                                     context,
                                     NewsCategory.politics,
                                   ),
                                   _buildImageContainer(
-                                    'Sports',
+                                    AppLocalizations.of(context)!.sports,
                                     'https://i.pinimg.com/736x/fe/67/49/fe674914b51da2170019d092e19f5440.jpg',
                                     context,
                                     NewsCategory.sports,
                                   ),
                                   _buildImageContainer(
-                                    'Entertainment',
+                                    AppLocalizations.of(context)!.entertainment,
                                     'https://i.pinimg.com/736x/c1/f6/52/c1f6526d8499d10a45e27cee47281996.jpg',
                                     context,
                                     NewsCategory.entertainment,
                                   ),
                                   _buildImageContainer(
-                                    'Health',
+                                    AppLocalizations.of(context)!.health,
                                     'https://i.pinimg.com/736x/3d/42/04/3d42045f076135a461c62e1949a35099.jpg',
                                     context,
                                     NewsCategory.health,
                                   ),
                                   _buildImageContainer(
-                                    'Business',
+                                    AppLocalizations.of(context)!.business,
                                     'https://i.pinimg.com/736x/1c/4e/89/1c4e8918b36ea9a6e54eab713f630689.jpg',
                                     context,
                                     NewsCategory.business,
@@ -429,13 +439,16 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
       child: InkWell(
         onTap: () {
           if (category != null) {
+            Log.i('SIDE_PAGE: Menu tapped: $text - Navigating to Home with category: $category');
             context.goNamed(
               'home',
               pathParameters: {'category': category.index.toString()},
             );
-          } else if (text == 'Bookmarks') {
+          } else if (text == AppLocalizations.of(context)!.bookmarks) {
+            Log.i('SIDE_PAGE: Navigating to Bookmarks');
             context.push('/sidepage/bookmark');
-          } else if (text == 'Settings') {
+          } else if (text == AppLocalizations.of(context)!.settings) {
+            Log.i('SIDE_PAGE: Navigating to Settings');
             context.push('/sidepage/settings');
           }
         },
@@ -562,6 +575,7 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
     final theme = Theme.of(context);
     return GestureDetector(
       onTap: () {
+        Log.i('SIDE_PAGE: Topic tapped: $text - Navigating to Home with category: $category');
         context.goNamed(
           'home',
           pathParameters: {'category': category.index.toString()},
@@ -600,3 +614,4 @@ class _SidePageState extends State<SidePage> with TickerProviderStateMixin {
     );
   }
 }
+

@@ -162,3 +162,4 @@ class _AnimatedHeaderState extends State<AnimatedHeader> with TickerProviderStat
     );
   }
 }
+

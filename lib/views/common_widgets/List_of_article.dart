@@ -11,6 +11,7 @@ import 'package:blyft/models/article_model.dart';
 // Created a global logger instance
 final Logger _logger = Logger();
 
+
 class ArticleListItem extends StatelessWidget {
   final Article article;
   final VoidCallback onTap;
@@ -69,7 +70,6 @@ class ArticleListItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           child: Row(
             children: [
-              // Image section
               SizedBox(
                 width: 110,
                 height: 120,
@@ -294,3 +294,4 @@ class ArticleListItem extends StatelessWidget {
     );
   }
 }
+
