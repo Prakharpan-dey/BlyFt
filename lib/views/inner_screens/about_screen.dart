@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:blyft/utils/logger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -14,6 +15,8 @@ class AboutUsScreen extends StatefulWidget {
   State<AboutUsScreen> createState() => _AboutUsScreenState();
 }
 
+bool _hasLoggedNavigated = false; // to prevent duplicate navigation logs
+
 class _AboutUsScreenState extends State<AboutUsScreen>
     with TickerProviderStateMixin {
   late AnimationController _fadeController;
@@ -22,6 +25,7 @@ class _AboutUsScreenState extends State<AboutUsScreen>
   @override
   void initState() {
     super.initState();
+    Log.i('ABOUT_SCREEN: initState started'); // <-- Added line
     _fadeController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 600),
@@ -33,6 +37,14 @@ class _AboutUsScreenState extends State<AboutUsScreen>
     );
 
     _fadeController.forward();
+  }
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_hasLoggedNavigated) {
+      _hasLoggedNavigated = true;
+      Log.i('ABOUT_SCREEN: navigated to'); // <-- Added line
+    }
   }
 
   @override
