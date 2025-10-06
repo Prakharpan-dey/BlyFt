@@ -1,3 +1,4 @@
+
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -8,6 +9,10 @@ import '../../l10n/app_localizations.dart';
 import '../../controller/cubit/theme/theme_cubit.dart';
 import '../../controller/services/tutorial_service.dart';
 import '../../models/theme_model.dart';
+
+void logEvent(String event) {
+  print("[INTRO_SCREEN] $event");
+}
 
 // Enhanced Palette (matching auth design)
 const Color bgStart = Color(0xFF070B14);
@@ -89,13 +94,18 @@ class _IntroductionScreenState extends State<IntroductionScreen>
 
   void _onPageChanged(int page) {
     setState(() => _currentPage = page);
+    logEvent("User navigated to page ${page + 1}");
   }
+
 
   void _showThemeSelectionScreen() {
     setState(() => _showThemeSelection = true);
   }
 
   void _completeIntro() async {
+    // Log that the GET STARTED button was clicked
+    logEvent("GET STARTED button clicked");
+
     // Apply the selected theme
     context.read<ThemeCubit>().changeTheme(
       _selectedTheme.copyWith(isDarkMode: _isDarkMode),
@@ -104,11 +114,13 @@ class _IntroductionScreenState extends State<IntroductionScreen>
     // Mark tutorial as completed
     await TutorialService.completeTutorial();
 
-    // Navigate to home
+    // Navigate to home and log it
     if (mounted) {
+      logEvent("Intro completed, navigating to home");
       context.pushReplacement('/home/0');
     }
   }
+
 
   // Helper method to get surface color based on theme mode
   Color _getSurfaceColor(bool isDarkMode) {
@@ -449,14 +461,17 @@ class _IntroductionScreenState extends State<IntroductionScreen>
             child: ElevatedButton(
               onPressed: () {
                 if (isLastPage) {
+                  logEvent("CUSTOMIZE THEME button clicked on page ${_currentPage + 1}");
                   _showThemeSelectionScreen();
                 } else {
+                  logEvent("NEXT button clicked on page ${_currentPage + 1}");
                   _pageController.nextPage(
                     duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
                   );
                 }
               },
+
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.transparent,
                 shadowColor: Colors.transparent,
