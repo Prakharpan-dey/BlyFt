@@ -365,6 +365,29 @@ We welcome contributions! Please read our [Contributing Guidelines](.github/CONT
                 </a>
             </td>
             <td align="center">
+                <a href="https://github.com/Gupta-02">
+                    <img src="https://avatars.githubusercontent.com/u/182321898?v=4" width="100;" alt="Gupta-02"/>
+                    <br />
+                    <sub><b>Gupta-02</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Prakharpan-dey">
+                    <img src="https://avatars.githubusercontent.com/u/147196729?v=4" width="100;" alt="Prakharpan-dey"/>
+                    <br />
+                    <sub><b>Prakharpan-dey</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/sandy4242">
+                    <img src="https://avatars.githubusercontent.com/u/152861071?v=4" width="100;" alt="sandy4242"/>
+                    <br />
+                    <sub><b>sandy4242</b></sub>
+                </a>
+            </td>
+            <td align="center">
                 <a href="https://github.com/vijaykarthiktk">
                     <img src="https://avatars.githubusercontent.com/u/39937989?v=4" width="100;" alt="vijaykarthiktk"/>
                     <br />
@@ -378,8 +401,6 @@ We welcome contributions! Please read our [Contributing Guidelines](.github/CONT
                     <sub><b>aaryapoyrekar</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/vansh909">
                     <img src="https://avatars.githubusercontent.com/u/133160909?v=4" width="100;" alt="vansh909"/>
