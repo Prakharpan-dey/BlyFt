@@ -1,3 +1,4 @@
+import 'package:blyft/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:blyft/controller/bloc/bookmark_bloc/bookmark_event.dart';
@@ -27,6 +28,8 @@ class _BookmarkScreenState extends State<BookmarkScreen>
   @override
   void initState() {
     super.initState();
+    Log.i('BOOKMARK_SCREEN: Screen started');
+    Log.i('BOOKMARK_SCREEN: Loading bookmarks');
     context.read<BookmarkBloc>().add(LoadBookmarksEvent());
 
     _animationController = AnimationController(
@@ -59,8 +62,12 @@ class _BookmarkScreenState extends State<BookmarkScreen>
   }
 
   Future<void> _launchUrl(String url) async {
+    Log.i('BOOKMARK_SCREEN: Opening article URL: $url');
     if (!await launchUrl(Uri.parse(url))) {
+      Log.e('BOOKMARK_SCREEN: Could not launch URL: $url');
       throw Exception('Could not launch $url');
+    } else {
+      Log.i('BOOKMARK_SCREEN: Successfully launched URL');
     }
   }
 
@@ -90,7 +97,10 @@ class _BookmarkScreenState extends State<BookmarkScreen>
             leading: IconButton(
               icon: const Icon(Icons.arrow_back_ios_new, size: 20),
               color: theme.colorScheme.onSurface.withAlpha((0.7 * 255).toInt()),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                Log.i('BOOKMARK_SCREEN: Navigating back');
+                Navigator.of(context).pop();
+              },
             ),
           ),
           SliverPadding(
@@ -107,10 +117,14 @@ class _BookmarkScreenState extends State<BookmarkScreen>
                     child: BlocBuilder<BookmarkBloc, BookmarkState>(
                       builder: (context, state) {
                         if (state is BookmarksLoaded) {
+                          Log.i(
+                            'BOOKMARK_SCREEN: Bookmarks loaded (${state.bookmarks.length} items)',
+                          );
                           return state.bookmarks.isEmpty
                               ? _buildEmptyState(currentTheme)
                               : _buildBookmarksList(state.bookmarks);
                         }
+                        Log.i('BOOKMARK_SCREEN: Loading bookmarks...');
                         return Center(
                           child: CircularProgressIndicator(
                             color: currentTheme.primaryColor,
@@ -188,7 +202,12 @@ class _BookmarkScreenState extends State<BookmarkScreen>
                 elevation: 4,
                 shadowColor: currentTheme.primaryColor.withAlpha((0.5 * 255).toInt()),
               ),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                Log.i(
+                  'BOOKMARK_SCREEN: Discover News button tapped - Navigating back',
+                );
+                Navigator.of(context).pop();
+              },
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -223,10 +242,14 @@ class _BookmarkScreenState extends State<BookmarkScreen>
           child: ArticleListItem(
             showRemove: true,
             article: article,
-            onSide: () => context.read<BookmarkBloc>().add(
-              ToggleBookmarkEvent(article),
-            ),
-            onTap: () => _launchUrl(article.url),
+            onSide: () {
+              Log.i('BOOKMARK_SCREEN: Removing bookmark: ${article.title}');
+              context.read<BookmarkBloc>().add(ToggleBookmarkEvent(article));
+            },
+            onTap: () {
+              Log.i('BOOKMARK_SCREEN: Article tapped: ${article.title}');
+              _launchUrl(article.url);
+            },
           ),
         );
       },
