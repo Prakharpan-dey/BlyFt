@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import '../../l10n/app_localizations.dart';
+import 'package:blyft/utils/logger.dart';
 
 class ChatScreen extends StatefulWidget {
   final Article article;
@@ -32,6 +33,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    Log.i('CHAT_SCREEN: Screen started for article: ${widget.article.title}',);
     _fadeController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1000),
@@ -86,6 +88,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   }
 
   Future<void> _showReportDialog(int messageIndex) async {
+    Log.i('CHAT_SCREEN: Report dialog opened for message index: $messageIndex',);
     // Persistent dialog-local state (declared outside StatefulBuilder)
     String? selectedOption;
     final TextEditingController customReasonController =
@@ -208,6 +211,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                         children: [
                           TextButton(
                             onPressed: () {
+                              Log.i('CHAT_SCREEN: Report dialog cancelled',);
                               Navigator.of(context).pop();
                             },
                             child: Text(
@@ -225,6 +229,12 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                                 canSubmit
                                     ? () {
                                       _reportedMessages.add(messageIndex);
+                                      final reason =
+                                          showCustomField
+                                              ? customReasonController.text
+                                                  .trim()
+                                              : selectedOption;
+                                      Log.i('CHAT_SCREEN: Message reported - Reason: $reason',);
                                       Navigator.of(context).pop();
                                       // You can also forward `reason` to your backend here if needed.
                                       _showReportConfirmation(appTheme, theme);
@@ -297,6 +307,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   }
 
   void _showReportConfirmation(AppTheme appTheme, ThemeData theme) {
+    Log.i('CHAT_SCREEN: Report confirmation shown');
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -317,10 +328,11 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     final theme = Theme.of(context);
 
     return BlocProvider(
-      create:
-          (context) =>
-              ChatBloc(geminiService: GeminiFlashService())
-                ..add(InitializeChat(article: widget.article)),
+      create: (context) {
+        Log.i('CHAT_SCREEN: Initializing chat with Gemini');
+        return ChatBloc(geminiService: GeminiFlashService())
+          ..add(InitializeChat(article: widget.article));
+      },
       child: Scaffold(
         backgroundColor: theme.colorScheme.surface,
         body: Container(
@@ -374,7 +386,10 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                 _buildGlassButton(
                   Icons.arrow_back_ios_new,
                   appTheme.primaryColor,
-                  () => Navigator.pop(context),
+                  () {
+                    Log.i('CHAT_SCREEN: Navigating back');
+                    Navigator.pop(context);
+                  },
                 ),
                 const Gap(16),
                 Expanded(
@@ -415,6 +430,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                       Icons.delete_outline,
                       Colors.red,
                       () {
+                        Log.i('CHAT_SCREEN: Clearing chat history');
                         context.read<ChatBloc>().add(ClearChat());
                       },
                     );
@@ -550,7 +566,15 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   Widget _buildMessageList(AppTheme appTheme) {
     return BlocConsumer<ChatBloc, ChatState>(
       listener: (context, state) {
-        if (state is ChatLoaded || state is MessageSending) _scrollToBottom();
+        if (state is ChatLoaded) {
+          Log.i(
+            'CHAT_SCREEN: Chat loaded with ${state.chatWindow.conversations.length} conversations',
+          );
+          _scrollToBottom();
+        } else if (state is MessageSending) {
+          Log.i('CHAT_SCREEN: Sending message...');
+          _scrollToBottom();
+        }
       },
       builder: (context, state) {
         if (state is ChatLoaded) {
@@ -622,6 +646,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
             },
           );
         } else if (state is ChatError) {
+          Log.e('CHAT_SCREEN: Chat error occurred', state.message);
           return Center(
             child: Container(
               padding: const EdgeInsets.all(32),
@@ -680,6 +705,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
             ),
           );
         } else if (state is ChatInitial) {
+          Log.i('CHAT_SCREEN: Chat initialized, waiting for user input');
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -935,7 +961,8 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                                 ],
                             onSelected: (value) {
                               if (value == AppLocalizations.of(context)!.report) {
-                                _showReportDialog(messageIndex);
+                                    Log.i('CHAT_SCREEN: Report option selected for message index: $messageIndex');
+                                    _showReportDialog(messageIndex);
                               }
                             },
                           ),
@@ -1183,6 +1210,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                               ? () {
                                 final message = _controller.text.trim();
                                 if (message.isNotEmpty) {
+                                  Log.i('CHAT_SCREEN: Sending message');
                                   final currentState =
                                       context.read<ChatBloc>().state;
                                   FocusScope.of(context).unfocus();
@@ -1215,6 +1243,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   void _scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_scrollController.hasClients) {
+        Log.i('CHAT_SCREEN: Scrolling to bottom');
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
           duration: const Duration(milliseconds: 300),
